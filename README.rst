@@ -40,24 +40,24 @@ feature ブランチから作業し、
 HTMLはどこにあるの？
 ====================
 
-HTMLドキュメントは、ユーザがまず目にするドキュメントであり、
-私たちが最も気になるところです。Since revisions to the built
-files are not of value, they are not under source control.  This also allows
-you to regenerate as necessary if you want to "preview" your work.  Generating
-the HTML is very simple.  From the root directory of your user guide repo
-fork issue the command you used at the end of the installation instructions::
+HTMLドキュメントは読点ユーザがまず目にするドキュメントであり、
+私たちが最も気になるところですが
+ビルドファイルの履歴には価値がないためソース管理されません。そのため
+それらを表示をしたい場合にはソースコードからビルドします。HTMLをビルドすることは
+とても簡単です。あなたのユーザガイドのルートディレクトリで
+インストール手順の最後に使用したコマンドを実行してください。
 
 	make html
 
-You will see it do a whiz-bang compilation, at which point the fully rendered
-user guide and images will be in *build/html/*.  After the HTML has been built,
-each successive build will only rebuild files that have changed, saving
-considerable time.  If for any reason you want to "reset" your build files,
-simply delete the *build* folder's contents and rebuild.
+素晴らしく完璧にレンダリングされたユーザーガイドとその画像は
+*build/html/* の中に保存されます。HTMLがビルドされると
+変更されたファイルのみを再構築し
+かなりの時間を節約します。何らかの理由でビルドファイルを "リセット" したい場合は
+ *build* ディレクトリの中身を削除して再度ビルドしてください。 
 
 ***************
-Style Guideline
+スタイルガイドライン
 ***************
 
-Please refer to source/documentation/index.rst for general guidelines for
-using Sphinx to document CodeIgniter.
+Sphinxを使用してCodeIgniterを文書化する際の一般的なガイドラインについては
+source/documentation/index.rst を参照してください。
