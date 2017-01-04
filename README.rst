@@ -1,25 +1,25 @@
 ######################
-CodeIgniter User Guide
+CodeIgniter ユーザーガイド
 ######################
 
 ******************
-Setup Instructions
+セットアップ手順
 ******************
 
-The CodeIgniter user guide uses Sphinx to manage the documentation and
-output it to various formats.  Pages are written in human-readable
-`ReStructured Text <http://sphinx.pocoo.org/rest.html>`_ format.
+CodeIgniterユーザガイドでは、Sphinxを使用して
+さまざまな形式のドキュメントとして出力します。ページは人間が読めるように
+`ReStructured Text <http://sphinx.pocoo.org/rest.html>`_ 形式で書かれています。
 
-Prerequisites
+前提条件
 =============
 
-Sphinx requires Python, which is already installed if you are running OS X.
-You can confirm in a Terminal window by executing the ``python`` command
-without any parameters.  It should load up and tell you which version you have
-installed.  If you're not on 2.7+, go ahead and install 2.7.2 from
+SphinxにはPythonが必要です。PythonはOS Xを利用している場合にはすでにインストールされています。
+``python`` コマンドをパラメータなしで実行すると、
+ターミナルで確認できますロードし、
+インストールしたバージョンを教えてください。あなたが2.7以上でないなら、次のURLから2.7.2をインストールしてください
 http://python.org/download/releases/2.7.2/
 
-Installation
+インストール
 ============
 
 1. Install `easy_install <http://peak.telecommunity.com/DevCenter/EasyInstall#installing-easy-install>`_
