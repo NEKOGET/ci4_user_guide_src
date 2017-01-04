@@ -22,26 +22,26 @@ http://python.org/download/releases/2.7.2/
 インストール
 ============
 
-1. Install `easy_install <http://peak.telecommunity.com/DevCenter/EasyInstall#installing-easy-install>`_
+1. `easy_install <http://peak.telecommunity.com/DevCenter/EasyInstall#installing-easy-install>`_ をインストール
 2. ``easy_install "sphinx==1.4.5"``
 3. ``easy_install sphinxcontrib-phpdomain``
 4. Install the CI Lexer which allows PHP, HTML, CSS, and JavaScript syntax highlighting in code examples (see *cilexer/README*)
 5. ``cd user_guide_src``
 6. ``make html``
 
-Editing and Creating Documentation
+ドキュメントの編集と作成
 ==================================
 
-All of the source files exist under *source/* and is where you will add new
-documentation or modify existing documentation.  Just as with code changes,
-we recommend working from feature branches and making pull requests to
-the *develop* branch of this repo.
+すべてのソースファイルは *source/* 以下にあります。 新しいドキュメントを追加したり
+既存のドキュメントの変更修正をする場所です。コードの変更と同様に、
+feature ブランチから作業し、
+ このレポジトリの *develop* ブランチにプルリクエストを行うことをお勧めします。
 
-So where's the HTML?
+HTMLはどこにあるの？
 ====================
 
-Obviously, the HTML documentation is what we care most about, as it is the
-primary documentation that our users encounter.  Since revisions to the built
+HTMLドキュメントは、ユーザがまず目にするドキュメントであり、
+私たちが最も気になるところです。Since revisions to the built
 files are not of value, they are not under source control.  This also allows
 you to regenerate as necessary if you want to "preview" your work.  Generating
 the HTML is very simple.  From the root directory of your user guide repo
