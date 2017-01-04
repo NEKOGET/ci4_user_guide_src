@@ -1,16 +1,16 @@
 #######################
-CodeIgniter4 User Guide
+CodeIgniter4 ユーザーガイド
 #######################
 
-- :doc:`License Agreement <license>`
-- :doc:`Change Log <changelog>`
+- :doc:`ライセンス契約  <license>`
+- :doc:`変更履歴 <changelog>`
 
 .. contents::
    :local:
    :depth: 2
 
 *******
-Welcome
+ようこそ
 *******
 
 .. toctree::
@@ -20,7 +20,7 @@ Welcome
         intro/index
 
 ************
-Installation
+インストール
 ************
 
 .. toctree::
@@ -31,7 +31,7 @@ Installation
 	installation/index
 
 ********
-Tutorial
+チュートリアル
 ********
 
 .. toctree::
@@ -41,7 +41,7 @@ Tutorial
     	tutorial/index
 
 *********************
-CodeIgniter4 Overview
+CodeIgniter4 の概要
 *********************
 .. toctree::
    :titlesonly:
@@ -49,7 +49,7 @@ CodeIgniter4 Overview
    concepts/index
 
 **************
-General Topics
+一般的なトピック
 **************
 
 .. toctree::
@@ -58,7 +58,7 @@ General Topics
 	general/index
 
 *****************
-Library Reference
+ライブラリ リファレンス
 *****************
 
 .. toctree::
@@ -67,7 +67,7 @@ Library Reference
 	libraries/index
 
 ******************
-Database Reference
+データーベースリファレンス
 ******************
 
 .. toctree::
@@ -76,7 +76,7 @@ Database Reference
 	database/index
 
 ****************
-Helper Reference
+ヘルパー リファレンス
 ****************
 
 .. toctree::
@@ -86,7 +86,7 @@ Helper Reference
 
 
 ***************************
-Contributing to CodeIgniter
+CodeIgniterへの貢献
 ***************************
 
 .. toctree::
