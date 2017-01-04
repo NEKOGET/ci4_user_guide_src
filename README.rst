@@ -25,7 +25,7 @@ http://python.org/download/releases/2.7.2/
 1. `easy_install <http://peak.telecommunity.com/DevCenter/EasyInstall#installing-easy-install>`_ をインストール
 2. ``easy_install "sphinx==1.4.5"``
 3. ``easy_install sphinxcontrib-phpdomain``
-4. Install the CI Lexer which allows PHP, HTML, CSS, and JavaScript syntax highlighting in code examples (see *cilexer/README*)
+4. CI Lexerをインストールすると PHP, HTML, CSS, と JavaScript を使った例文に対してシンタックスハイライトを使用することができます。 ( *cilexer/README* を参照)
 5. ``cd user_guide_src``
 6. ``make html``
 
