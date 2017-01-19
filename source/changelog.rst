@@ -1,13 +1,13 @@
 ##########
-Change Log
+変更履歴
 ##########
 
 Version 4.0-Pre-Alpha1
 ======================
 
-**Rewrite of the CodeIgniter framework**
+**CodeIgniterフレームワークのリライト**
 
-Release Date: Not Released
+リリース日時: リリースされていません。
 
 New core classes:
 

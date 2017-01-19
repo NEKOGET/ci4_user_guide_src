@@ -1,24 +1,24 @@
 #################
-Autoloading Files
+ファイルのオートロード
 #################
 
-Every application consists of a large number of classes in many different locations.
-The framework provides classes for core functionality. Your application will have a
-number of libraries, models, and other entities to make it work. You might have third-party
-classes that your project is using. Keeping track of where every single file is, and
-hard-coding that location into your files in a series of ``requires()`` is a massive
-headache and very error-prone. That's where autoloaders come in.
+すべてのアプリケーションは、さまざまな場所にたくさんのクラスで構成されています。
+このフレームワークは、コア機能の提供するクラスを提供します。あなたのアプリケーションは
+動作させるために、ライブラリ、モデル、およびその他多くものを持つことになります。プロジェクトで利用されている
+サードパーティなクラスも利用しているはずです。すべてのファイルを使うために、すべてを
+都度 ``requires()`` と、ハードコーディングすることは、エラーも発生しやすく、
+頭の痛い作業です。そこで、オートローダの出番です。
 
-CodeIgniter provides a very flexible autoloader that can be used with very little configuration.
-It can locate individual non-namespaced classes, namespaced classes that adhere to 
-`PSR4 <http://www.php-fig.org/psr/psr-4/>`_ autoloading
-directory structures, and will even attempt to locate classes in common directories (like Controllers,
-Models, etc). 
+CodeIgniterは非常に柔軟なオートローダを提供し、とても小さな構成で使用することができます。
+これは名前空間があるもの、ないものについて
+`PSR4 <http://www.php-fig.org/psr/psr-4/>`_ のオートロードのディレクトリ構造で、
+そして (コントローラ、モデルなど）共通ディレクトリ内の
+クラスを探します。 
 
-For performance improvement, the core CodeIgniter components have been added to the classmap.
+性能向上のためにCodeIgniterのコアコンポーネントはクラスマップに追加されました。
 
-The autoloader works great by itself, but can also work with other autoloaders, like
-`Composer <https://getcomposer.org>`_, or even your own custom autoloaders, if needed.
+オートローダはそれだけでも機能しますが、必要に応じて他のオートローダや
+`Composer <https://getcomposer.org>`_ や独自のカスタムオートローダを使用することもできます。
 Because they're all registered through
 `spl_autoload_register <http://php.net/manual/en/function.spl-autoload-register.php>`_,
 they work in sequence and don't get in each other's way.
