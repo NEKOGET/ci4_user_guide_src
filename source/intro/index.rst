@@ -3,19 +3,19 @@ CodeIgniter4へようこそ
 #######################
 
 CodeIgniterはPHPを使用してWebサイトを構築する人のための、
-アプリケーション開発フレームワークです。Its goal is to enable you to
-develop projects much faster than you could if you were writing code
-from scratch, by providing a rich set of libraries for commonly needed
-tasks, as well as a simple interface and logical structure to access
-these libraries. CodeIgniterは、あなたがクリエイティブなタスクのため必要となるコードの量を最小限にすることによって、
+アプリケーション開発フレームワークです。その目標は、
+一般的に必要なライブラリが豊富だということだけではなくて
+ライブラリにアクセスするためのシンプルなインターフェイスと論理構造を提供し
+スクラッチからコードを書くよりもはるかに速く
+開発できるようにすることです。CodeIgniterは、あなたがクリエイティブなタスクのため必要となるコードの量を最小限にすることによって、
 あなたのプロジェクトに集中することができます。
 
-Where possible, CodeIgniter has been kept as flexible as possible,
-allowing you to work in the way you want, not being forced into working
-any certain way. フレームワークは、コアの部分を簡単に拡張したり、
+CodeIgniterはできる限り柔軟になっています。
+利用方法が特定のルールに
+縛られることはありません。フレームワークは、コアの部分を簡単に拡張したり、
 必要とする機能のために差し替えることができます。
-In short, CodeIgniter is the malleable framework that tries to provide
-the tools you need while staying out of the way.
+つまりCodeIgniterは
+あなたに必要なツールを提供する邪魔にならないフレームなのです。
 
 ***********************
 CodeIgniterは、誰のためにありますか？
