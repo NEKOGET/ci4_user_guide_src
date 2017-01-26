@@ -1,12 +1,12 @@
 ##############################
-CodeIgniter Internals Overview
+CodeIgniter 内部の概要
 ##############################
 
-This guide should help contributors understand how the core of the framework works, and what needs to be done
-when creating new functionality. Specifically, it details the information needed to create new packages for the
+このガイドでは、フレームワークのコアがどのように機能するか。
+新しい機能を作成する際に何が必要なのかを理解するのに役立ちます。Specifically, it details the information needed to create new packages for the
 core.
 
-Dependencies
+依存関係
 ============
 
 All packages should be designed to be completely isolated from the rest of the packages. This will allow
@@ -22,7 +22,7 @@ provide a way for dependencies to override that::
 			: \Config\Services::foo();
 	}
 
-Type hinting
+タイプヒンティング
 ============
 
 PHP7 provides the ability to `type hint <http://php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration>`_
@@ -31,7 +31,7 @@ make it work.
 
 At this time, we are not using strict type hinting.
 
-Abstractions
+抽象化
 ============
 
 The amount of abstraction required to implement a solution should be the minimal amount required. Every layer of
@@ -50,7 +50,7 @@ classes within the package.
 * Test only public methods, not protected and private unless the method really needs it due to complexity.
 * Don't just test that the method works, but test for all fail states, thrown exceptions, and other pathways through your code.
 
-Namespaces and Files
+名前空間とファイル
 ====================
 
 All new packages should live under the ``CodeIgniter`` namespace. The package itself will need its own sub-namespace
@@ -64,7 +64,7 @@ The the Router as an example. The Router lives in the ``CodeIgniter\Router`` nam
 **RouteCollection** and **Router**, which are in the files, **system/Router/RouteCollection.php** and
 **system/Router/Router.php** respectively. 
 
-Interfaces
+インターフェイズ
 ----------
 
 Most base classes should have an interface defined for them. At the very least this allows them to be easily mocked
@@ -75,7 +75,7 @@ The Router package mentioned above includes the
 ``CodeIgniter\Router\RouterCollectionInterface`` and ``CodeIgniter\Router\RouterInterface``
 interfaces to provide the abstractions for the two classes in the package.
 
-Handlers
+ハンドラー
 --------
 
 When a package supports multiple "drivers", the convention is to place them in a **Handlers** directory, and
@@ -84,7 +84,7 @@ extend to be beneficial in keeping the code DRY.
 
 See the Log and Session packages for examples.
 
-Configuration
+設定
 =============
 
 Should the package require user-configurable settings, you should create a new file just for that package under
@@ -96,7 +96,7 @@ Autoloader
 All files within the package should be added to **system/Config/AutoloadConfig.php**, in the "classmap" property.
 This is only used for core framework files, and helps to minimize file system scans and keep performance high.
 
-Command-Line Support
+コマンドライン サポート
 ====================
 
 CodeIgniter has never been known for it's strong CLI support. However, if your package could benefit from it, create a
@@ -108,7 +108,7 @@ through the browser, but is restricted to the CLI only.
 
 See the **MigrationsCommand** file for an example.
 
-Documentation
+ドキュメント
 =============
 
 All packages must contain appropriate documentation that matches the tone and style of the rest of the user guide.
