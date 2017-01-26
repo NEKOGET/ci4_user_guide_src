@@ -1,9 +1,9 @@
 =====================
-CodeIgniter4 Roadmap
+CodeIgniter4 ロードマップ
 =====================
 
-The roadmap we are working to was `announced on our forum
-<http://forum.codeigniter.com/thread-62615.html>`_  in August, 2015.
+私たちが取り組んでいるロードマップは、2005年8月に `フォーラム
+<http://forum.codeigniter.com/thread-62615.html>`_  で発表されました。
 
 Phase 1: Essentials (done)
 ==========================
