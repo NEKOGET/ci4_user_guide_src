@@ -5,87 +5,87 @@ CodeIgniter4 ロードマップ
 私たちが取り組んでいるロードマップは、2005年8月に `フォーラム
 <http://forum.codeigniter.com/thread-62615.html>`_  で発表されました。
 
-Phase 1: Essentials (done)
+フェーズ 1: エッセンシャル (完了)
 ==========================
 
-The first phase focused on nailing the essentials in the framework. 
-This ensures that all of the basic parts needed to make it work are in place 
-and working well.
+最初のフェーズではフレームワークの本質に対して集中しました。
+動作させるために飛鳥な基本的な部分が適切に配置され、
+うまく機能していることを保証します。
 
-Phase 1 packages include:
+フェーズ 1 の機能は次の通りです:
 
-- Autoloader
-- Logging
-- Exception Handling
-- HTTP Request/Response
-- Routing
-- Controllers
-- Models
-- Database (MySQL & Postgres)
-- Config
-- Security
-- Views
-- Sessions
-- Basic debugging and profiling
+- オートローダー
+- ログ
+- 例外処理
+- HTTP リクエスト/レスポンス
+- ルーティング
+- コントローラー
+- モデル
+- データベース (MySQL と Postgres)
+- 設定
+- セキュリティ
+- ビュー
+- セッション
+- 基本的なデバッグとプロファイリング
 
-This phase is complete, and the repository is being opened up for the
-community to help.
+このフェーズが完了し、レポジトリーは
+コミュニティのために公開されました。
 
-Completed: June 2016
+完了: 2016年6月
 
-Phase 2: Core Components (in progress)
+フェーズ 2: コアコンポーネント (進行中)
 ======================================
 
-The second phase focuses on providing and refining the existing classes and 
-features that CodeIgniter users know and love.
+次のフェーズでは、既存クラスのとCodeIgniterユーザーが好むであろう機能について
+洗練することに集中しました。
 
-Phase 2 packages include:
+フェーズ2 の機能は次の通りです
 
-- The helpers
-- Language/Localization features
-- Caching
-- Email
-- Encryption
-- Form Validation
-- Image Library
-- Pagination
-- Uploader
+- ヘルパー
+- 言語/ローカライズ機能
+- キャッシュ
+- メール機能
+- 暗号化機能
+- フォームバリデーション
+- イメージライブラリ
+- ページネーション
+- アップローダー
 
-During this phase, we will be looking for PRs for the planned and approved
-components, and for bug reports filed as github issues.
+このフェーズでは、私たちが計画し承認したコンポーネントと
+githubのissueに対してのPRを求めています。
 
 Those packages that we are ready to implement will appear as issues
 in the github repository, with whatever direction we can provide.
-As they get implemented and tested, and merged into the framework,
-they will show up in the changelog.
+実装されテストされて、このフレームワークにマージされたものは、
+変更履歴に表示されます。
 
-Target completion: December 2016
+完成目標: 2016年12月
 
-Phase 3: Expansion (not started)
+フェーズ 3: 拡張機能 (未着手)
 ================================
 
-The third phase includes fleshing out and working on the optional packages. 
-At this point, the framework can be released and need not wait for these libraries to be brought up to date. 
+３つ目のフェーズでは、オプション的なパッケージに取り組みます。
+フェーズ3になった時点で、CodeIgniterはリリースすることが可能な状態です。このフェーズのコードを待つ必要はありません。 
 
-Each optional package will have its own repository, and will be developed
-and managed independently of the main framework.
+各オプションパッケージには独自のレポジトリを持つことになります。
+メインのフレームワークとは独立して管理されます。
 
-Planned optional packages:
+オプションパッケージの予定:
 
 - FTP
 - XML-RPC
 - Zip
-- Typography
-- Template Parser
+- タイポグラフィ
+- テンプレートパーサー
 
-These optional packages will constitute the "official" addins for CodeIgniter4.
-Developers will undoubtedly create their own as well. We have not settled
-on the best way to promote/integrate these.
+オプションパッケージは CodeIgniter4 のための公式なアドオンを構成します。
+開発者は間違いなく自分たちのためのアドオンを作ることでしょう。私たちは 促進し、統合する
+良い方法について、解決することができていません。
 
-Target completion: April 2017
+完成目標: 2017年4月
 
-.. note:: Any target completion dates shown are speculative, and depend
-    very much on the quantity and quality of community contributions.
+.. 注意::提示した目標完了日は推測にです。 
+    コミュニティの貢献の量と質から、とても大きく影響されます。
 
-    Results may not be as depicted. Your mileage may vary. Contents will settle
-    during shipping. 
+    描いているような結果が出ないかもしれません。結果はあなたの思惑とは違うかもしれません。いずれ落ち着きます。
+    開発は進んでいるのですから。 
