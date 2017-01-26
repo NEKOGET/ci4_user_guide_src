@@ -19,35 +19,35 @@ CodeIgniterは非常に柔軟なオートローダを提供し、とても小さ
 
 オートローダはそれだけでも機能しますが、必要に応じて他のオートローダや
 `Composer <https://getcomposer.org>`_ や独自のカスタムオートローダを使用することもできます。
-Because they're all registered through
+それらがすべては
 `spl_autoload_register <http://php.net/manual/en/function.spl-autoload-register.php>`_,
-they work in sequence and don't get in each other's way.
+を通じて登録されるので、それぞれがお互いを邪魔するといったことはありません。
 
-The autoloader is always active, being registered with ``spl_autoload_register()`` at the
-beginning of the framework's execution.
+オートローダーはフレームワークの実行開始時に ``spl_autoload_register()``  に登録され
+常にアクティブです。
 
-Configuration
+設定
 =============
 
-Initial configuration is done in **/application/Config/Autoload.php**. This file contains two primary
-arrays: one for the classmap, and one for PSR4-compatible namespaces.
+初期設定は **/application/Config/Autoload.php** で行われます。このファイルには主要な2つの配列が含まれています。
+1つはクラスマップに対して、もう1つはPSR4互換名前空間に対するものです。
 
-Namespaces
+名前空間
 ==========
 
-The recommended method for organizing your classes is to create one or more namespaces for your
-application's files. This is most important for any business-logic related classes, entity classes,
-etc. The ``psr4`` array in the configuration file allows you to map the namespace to the directory
-those classes can be found in::
+クラスを整理するために、アプリケーションのファイルのために1つもしくは複数の
+名前空間を作成することをお勧めします。これは、エンティティクラスやビジネスロジックに関連するクラスのために
+最も重要なことです。. 設定ファイルの中の ``psr4`` 配列を利用すると、それらのクラスを見つけることができるディレクトリに対して
+名前空間をマッピングすることができます::
 
 	$psr4 = [
 		'App'         => APPPATH,
 		'CodeIgniter' => BASEPATH,
 	];
 
-The key of each row is the namespace itself. This does not need a trailing slash. If you use double-quotes
-to define the array, be sure to escape the backwards slash. That means that it would be ``My\\App``,
-not ``My\App``. The value is the location to the directory the classes can be found in. They should
+各行の配列のキーは名前空間そのものを表します。末尾にバックスラッシュは必要ありません。Iもしあなたがダブルクォートを使用する場合は
+バックスラッシュをエスケープするようにしてください。That means that it would be ``My\\App``,
+not ``My\App``. この値は、クラスを見つかることができるディレクトリの場所です。They should
 have a trailing slash.
 
 By default, the application folder is namespace to the ``App`` namespace. While you are not forced to namespace the controllers,
@@ -63,7 +63,7 @@ You will need to modify any existing files that are referencing the current name
 	expect. This allows the core system files to always be able to locate them, even when the application
 	namespace has changed.
 
-Classmap
+クラスマップ
 ========
 
 The classmap is used extensively by CodeIgniter to eke the last ounces of performance out of the system
@@ -76,7 +76,7 @@ third-party libraries that are not namespaced::
 
 The key of each row is the name of the class that you want to locate. The value is the path to locate it at.
 
-Legacy Support
+レガシーサポート
 ==============
 
 If neither of the above methods find the class, and the class is not namespaced, the autoloader will look in the
