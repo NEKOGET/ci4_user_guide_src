@@ -57,11 +57,11 @@ new namespace value under the ``APP_NAMESPACE`` setting::
 
 	define('APP_NAMESPACE', 'App');
 
-You will need to modify any existing files that are referencing the current namespace.
+現在の名前空間を参照している既存ファイルを変更する必要があります。
 
-.. important:: Config files are namespaced in the ``Config`` namespace, not in ``App\Config`` as you might
-	expect. This allows the core system files to always be able to locate them, even when the application
-	namespace has changed.
+.. 重要:: 設定ファイルの名前空間は ``Config`` です。 
+	``App\Config``  ではありません。これによってアプリケーションの名前空間が変化した場合でも、コアシステムファイルは常にそれを
+	見つけることができるためです。
 
 クラスマップ
 ========
@@ -74,7 +74,7 @@ third-party libraries that are not namespaced::
 		'Markdown' => APPPATH .'third_party/markdown.php'
 	];
 
-The key of each row is the name of the class that you want to locate. The value is the path to locate it at.
+各行のキーは場所を特定したいクラスの名前です。そして値はそれを見つけるためのパスです。
 
 レガシーサポート
 ==============
