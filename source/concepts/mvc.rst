@@ -40,12 +40,12 @@ common header or footer on every page.
 
 Views are generally stored in **/application/Views**, but can quickly become unwieldy if not organized in some fashion.
 CodeIgniter does not enforce any type of organization, but a good rule of thumb would be to create a new directory in
-the **Views** directory for each controller. Then, name views by the method name. This makes them very easy find later
-on. For example, a user's profile might be displayed in a controller named ``User``, and a method named ``profile``.
-You might store the view file for this method in **/application/Views/User/Profile.php**.
+the **Views** directory for each controller. 次に、メソッド名によりビューに名前を付けます。これによって後でそれらを探すのが
+とても簡単になります。例えば, ユーザープロフィールを ``User`` コントローラーと  ``profile`` メソッドにして表示します。
+ **/application/Views/User/Profile.php** にビューファイルを保存することができます。
 
 That type of organization works great as a base habit to get into. At times you might need to organize it differently.
-That's not a problem. As long as CodeIgniter can find the file, it can display it.
+それは問題ではありません。CodeIgniter がファイルを見つけることができる限り、それを表示することができます。
 
 :doc:`Find out more about views </general/views>`
 
