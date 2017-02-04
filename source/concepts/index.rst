@@ -1,8 +1,8 @@
 #####################
-CodeIgniter4 Overview
+CodeIgniter4 概要
 #####################
 
-The following pages describe the architectural concepts behind CodeIgniter4:
+次のページではCodeIgniter4の背景になる構造上の概念について説明します。:
 
 .. toctree::
 	:titlesonly:
