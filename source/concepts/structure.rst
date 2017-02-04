@@ -1,34 +1,34 @@
 #####################
-Application Structure
+アプリケーション 構造
 #####################
 
-To get the most out of CodeIgniter, you need to understand how the application is structured, by default, and what you
-can change to meet the needs of your application.
+CodeIgniterを最大限に利用するために, 
+アプリケーションの構造とデフォルト、そして変更できることについて理解する必要があります。
 
-Default Directories
+デフォルトディレクトリ
 ===================
 
-A fresh install has six directories: ``/application``, ``/system``, ``/public``, 
-``/writable``, ``/tests`` and ``/docs``. 
-Each of these directories has a very specific part to play.
+新規インストールをすると6つのディレクトリができます。: ``/application``, ``/system``, ``/public``, 
+``/writable``, ``/tests`` and ``/docs``.
+これらのディレクトリはそれぞれ役割を持っています。.
 
 application
 -----------
-The ``application`` directory is where all of your application code lives. This comes with a default directory
-structure that works well for many applications. The following folders make up the basic contents::
+``application`` のディレクトリはアプリケーションのすべてのコードが存在します。デェフォルトのディレクトリ構造は
+多くのアプリケーションに適しています。次のフォルダは、基本的な内容を作ります:
 
 	/application
-		/Config         Stores the configuration files
-		/Controllers    Controllers determine the program flow
-		/Helpers        Helpers store collections of standalone functions
-		/Language       Multiple language support reads the language strings from here
-		/Libraries      Useful classes that don't fit in another category
-		/Models         Models work with the database to represent the business entities.
-		/Views          Views make up the HTML that is displayed to the client.
+		/Config		設定ファイルを格納します。
+		/Controllers		コントローラーはプログラムフローを決定します。
+		/Helpers		ヘルパーは、独立型機能のコードを保存します
+		/Language		スタンドアロン関数のコレクションを格納するここで、複数言語サポート言語の文字列を読み取ります。
+		/Libraries		Useful classes that don't fit in another category
+		/Models		Models work with the database to represent the business entities.
+		/Views          ビューは、クライアントに表示されるHTMLを生成します。
 
 
-Because the ``application`` directory is already namespaced, you should feel free to modify the structure
-of this directory to suit your application's needs. For example, you might decide to start using the Repository
+``application`` ディレクトリはすでに名前空間の設定がされているため
+アプリケーションの必要に応じてこのディレクトリの構造は自由に変更できます。For example, you might decide to start using the Repository
 pattern and Entity Models to work with your data. In this case, you could rename the ``Models`` directory to
 ``Repositories``, and add a new ``Entities`` directory.
 
@@ -74,10 +74,10 @@ production servers.
 
 docs
 ----
-This directory holds the CodeIgniter documentation. The ``user_guide`` subfolder contains a local copy of the
+このディレクトリは、CodeIgniterのドキュメントを保持しています。The ``user_guide`` subfolder contains a local copy of the
 User Guide, and the ``api_docs`` subfolder contains a local copy of the CodeIgniter components API reference.
 
-Modifying Directory Locations
+ ディレクトリの場所の変更
 -----------------------------
 
 If you've relocated any of the main directories, you can let the application 
