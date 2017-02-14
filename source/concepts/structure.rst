@@ -18,7 +18,7 @@ application
 多くのアプリケーションに適しています。次のフォルダは、基本的な内容を作ります:
 
 	/application
-		/Config		設定ファイルを格納します。
+		/Config         設定ファイルを格納します。
 		/Controllers		コントローラーはプログラムフローを決定します。
 		/Helpers		ヘルパーは、独立型機能のコードを保存します
 		/Language		スタンドアロン関数のコレクションを格納するここで、複数言語サポート言語の文字列を読み取ります。
@@ -28,7 +28,7 @@ application
 
 
 ``application`` ディレクトリはすでに名前空間の設定がされているため
-アプリケーションの必要に応じてこのディレクトリの構造は自由に変更できます。For example, you might decide to start using the Repository
+アプリケーションの必要に応じて、このディレクトリの構造は自由に変更できます。For example, you might decide to start using the Repository
 pattern and Entity Models to work with your data. In this case, you could rename the ``Models`` directory to
 ``Repositories``, and add a new ``Entities`` directory.
 
@@ -40,23 +40,23 @@ All files in this directory live under the ``App`` namespace, though you are fre
 
 system
 ------
-This directory stores the files that make up the framework, itself. While you have a lot of flexibility in how you
-use the application directory, the files in the system directory should never be modified. Instead, you should
+このディレクトリには、フレームワークを構成するファイルを格納します。アプリケーションディレクトリを使用する場合多くの柔軟性を持っていますが、
+システムディレクトリ内のファイルを変更することはありません。Instead, you should
 extend the classes, or create new classes, to provide the desired functionality.
 
-All files in this directory live under the ``CodeIgniter`` namespace.
+このディレクトリ内のすべてのファイルは ``CodeIgniter`` の名前空間を持っています。
 
 public
 ------
 
-The **public** folder holds the browser-acceible portion of your web application,
-preventing direct access to your source code.
-It contains the main **.htaccess** file, **index.php**, and any application 
-assets that you add, like CSS, javascript, or
-images.
+**public** フォルダは、ソースコードへの直接アクセスを防止し
+ブラウザからアクセス可能なものを格納します。
+ これは **.htaccess** ファイル、メインとなる **index.php** 、
+及びCSS, Javascriopt
+画像などの任意のファイルを含みます。
 
-This folder is meant to be the "web root" of your site, and your web server
-would be configured to point to it.
+このフォルダはサイトの "web ルート" であることを意味し、
+Webサーバをそうなるように設定することになります。
 
 writable
 --------
