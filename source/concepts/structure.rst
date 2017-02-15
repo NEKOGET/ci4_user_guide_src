@@ -28,15 +28,15 @@ application
 
 
 ``application`` ディレクトリはすでに名前空間の設定がされているため
-アプリケーションの必要に応じて、このディレクトリの構造は自由に変更できます。For example, you might decide to start using the Repository
-pattern and Entity Models to work with your data. In this case, you could rename the ``Models`` directory to
-``Repositories``, and add a new ``Entities`` directory.
+アプリケーションの必要に応じて、このディレクトリの構造は自由に変更できます。たとえば、あなたはあなたのデータを操作するために
+リポジトリパターンとエンティティモデルの使用を開始することを決定するとします。その場合  ``Models`` の名前を ``Repositories``  に変更し、
+新たに ``Entities`` ディレクトリを追加します。
 
-.. note:: If you rename the ``Controllers`` directory, though, you will not be able to use the automatic method of
-		routing to controllers, and will need to define all of your routes in the routes file.
+.. 注意:: もし ``Controllers`` ディレクトリの名前を変更する場合、コントローラに自動的なルーティングを使用することができません。
+すべてのルートを定義する必要があります。
 
-All files in this directory live under the ``App`` namespace, though you are free to change that in
-**application/Config/Constants.php**.
+**application/Config/Constants.php** を変更することは自由ですが
+このディレクトリ内のすべてのファイルは ``App``  名前空間以下に含まれます。
 
 system
 ------
@@ -60,28 +60,28 @@ Webサーバをそうなるように設定することになります。
 
 writable
 --------
-This directory holds any directories that might need to be written to in the course of an application's life.
-This includes directories for storing cache files, logs, and any uploads a user might send. You should add any other
-directories that your application will need to write to here. This allows you to keep your other primary directories
+このディレクトリはアプリケーションの中で書き込みが必要なファイルを保存しておくことができます。
+これは、キャッシュファイル、ログ、およびユーザが送信する可能性のある任意のアップロードを格納するためのディレクトリが含まれています。アプリケーションはここに書き込む必要がある
+他のディレクトリを追加する必要があります。This allows you to keep your other primary directories
 non-writable as an added security measure.
 
 
 tests
 -----
-This directory is setup to hold your test files. The ``_support`` directory holds various mock classes and other
-utilities that you can use while writing your tests. This directory does not need to be transferred to your
-production servers.
+このディレクトリにはテストファイルを保存するように設定されています。``_support`` ディレクトリにはテストを書くときに使用するモッククラス
+やユーティリティを保存できます。このディレクトリは本番サーバに転送する
+必要はありません。
 
 docs
 ----
-このディレクトリは、CodeIgniterのドキュメントを保持しています。The ``user_guide`` subfolder contains a local copy of the
-User Guide, and the ``api_docs`` subfolder contains a local copy of the CodeIgniter components API reference.
+このディレクトリは、CodeIgniterのドキュメントが保存されています。 ``user_guide``  フォルダにはローカルコピーが含まれており、
+ ``api_docs`` フォルダにはCodeIgniterコンポーネントAPIリファレンスのローカルコピーが含まれています。
 
  ディレクトリの場所の変更
 -----------------------------
 
-If you've relocated any of the main directories, you can let the application 
-know the new location within the main ``index.php`` file.
+メインディレクトリを変更した場合、
+ ``index.php`` ファイルの中に新しい場所を指定することができます。
 
 Starting around line 50, you will find three variables that hold the location to the **application**,
-**system**, and **writable** directories. These paths are relative to **index.php**. 
+**system**, and **writable** directories. これらのパスは **index.php** を基準にしています。 
