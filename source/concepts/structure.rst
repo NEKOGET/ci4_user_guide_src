@@ -83,5 +83,5 @@ docs
 メインディレクトリを変更した場合、
  ``index.php`` ファイルの中に新しい場所を指定することができます。
 
-Starting around line 50, you will find three variables that hold the location to the **application**,
-**system**, and **writable** directories. これらのパスは **index.php** を基準にしています。 
+50行めあたりから、  **application** 、
+**system**　、 **writable** ディレクトリの場所を保存する変数があります。それらのパスは **index.php** を基準にしています。 
