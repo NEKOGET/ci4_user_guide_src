@@ -1,15 +1,15 @@
 #################################
-Writing CodeIgniter Documentation
+CodeIgniter のドキュメントを書くということ
 #################################
 
 CodeIgniter uses Sphinx to generate its documentation in a variety of formats,
 using reStructuredText to handle the formatting.  If you are familiar with
-Markdown or Textile, you will quickly grasp reStructuredText.  The focus is
-on readability and user friendliness.
-While they can be quite technical, we always write for humans!
+Markdown or Textile, you will quickly grasp reStructuredText.  読みやすさと使いやすさに
+フォーカスしています。
+私たちは人間が読むためのものを書き、スフィンクスはそれに対して機械的に動作します。
 
-A local table of contents should always be included, like the one below.
-It is created automatically by inserting the following:
+コンテンツのローカルテーブルは、常に以下のようになるべきです。
+それは次のように挿入することで自動的に形成されます。:
 
 ::
 
@@ -32,13 +32,13 @@ JavaScript to dynamically add links to any function and method definitions
 contained in the current page.
 
 **************
-Tools Required
+必要なツール
 **************
 
-To see the rendered HTML, ePub, PDF, etc., you will need to install Sphinx
-along with the PHP domain extension for Sphinx.  The underlying requirement
-is to have Python installed.  Lastly, you will install the CI Lexer for
-Pygments, so that code blocks can be properly highlighted.
+HTML, ePub, PDF, 等にレンダリングしたいため
+PHP ドメインの拡張モジュールと一緒にスフィンクスをインストールする必要があります。まず大前提として
+Pythonがインストールされている必要があります。最後に、コードブロックが正しく強調表示されるように
+PygmentsのためのCI Lexerをインストールします。
 
 .. code-block:: bash
 
@@ -51,7 +51,7 @@ inside the documentation repository to install the CI Lexer.
 
 
 *****************************************
-Page and Section Headings and Subheadings
+ページとセクション、見出しと小見出しについて
 *****************************************
 
 Headings not only provide order and sections within a page, but they also
@@ -73,31 +73,31 @@ create these with the following tab triggers::
 	title->
 
 		##########
-		Page Title
+		ページタイトル
 		##########
 
 	sec->
 
 		*************
-		Major Section
+		主なセクション
 		*************
 
 	sub->
 
-		Subsection
+		サブセクション
 		==========
 
 	sss->
 
-		SubSubSection
+		サブサブ セクション
 		-------------
 
 	ssss->
 
-		SubSubSubSection
+		サブサブサブ セクション
 		^^^^^^^^^^^^^^^^
 
 	sssss->
 
-		SubSubSubSubSection (!)
+		サブサブサブサブ セクション (!)
 		"""""""""""""""""""""""
