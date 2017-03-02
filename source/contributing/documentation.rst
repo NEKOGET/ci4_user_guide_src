@@ -2,14 +2,14 @@
 CodeIgniter のドキュメントを書くということ
 #################################
 
-CodeIgniter uses Sphinx to generate its documentation in a variety of formats,
-using reStructuredText to handle the formatting.  If you are familiar with
-Markdown or Textile, you will quickly grasp reStructuredText.  読みやすさと使いやすさに
-フォーカスしています。
-私たちは人間が読むためのものを書き、スフィンクスはそれに対して機械的に動作します。
+Codeigniterではさまざまな形式でそのドキュメントを生成するためにスフィンクスを使用しています。
+そのため、reStructuredTextが利用されています。マークダウンを使い慣れているならば、
+すぐにreStructuredTextを使いこなせることでしょう。読みやすさと使いやすさに
+フォーカスしました。
+人間が読める文書で書き、テクニカルなことはスフィンクスにお任せです！
 
-コンテンツのローカルテーブルは、常に以下のようになるべきです。
-それは次のように挿入することで自動的に形成されます。:
+コンテンツのローカルテーブルは次のようになるはずです。
+次のように挿入することで自動的に作成されます。:
 
 ::
 
@@ -27,18 +27,18 @@ Markdown or Textile, you will quickly grasp reStructuredText.  読みやすさ�
 
   <div class="custom-index container"></div>
 
-The <div> that is inserted as raw HTML is a hook for the documentation's
-JavaScript to dynamically add links to any function and method definitions
-contained in the current page.
+この <div>は、ドキュメントのJavascriptを動的に挿入するために
+フックとして
+挿入されます。
 
 **************
-必要なツール
+T必要なツール
 **************
 
-HTML, ePub, PDF, 等にレンダリングしたいため
-PHP ドメインの拡張モジュールと一緒にスフィンクスをインストールする必要があります。まず大前提として
-Pythonがインストールされている必要があります。最後に、コードブロックが正しく強調表示されるように
-PygmentsのためのCI Lexerをインストールします。
+HTML, ePub, PDF などを表示するには、
+PHPドメインの拡張として、スフィンクスをインストールする必要があります。まず前提条件として
+Python がインストールされている必要があります。最後に、Pygmentsの為の CI Lexer をインストールします。
+それによってコードブロックが適切に強調表示することができます。
 
 .. code-block:: bash
 
@@ -51,7 +51,7 @@ inside the documentation repository to install the CI Lexer.
 
 
 *****************************************
-ページとセクション、見出しと小見出しについて
+Page and Section Headings and Subheadings
 *****************************************
 
 Headings not only provide order and sections within a page, but they also
@@ -73,31 +73,31 @@ create these with the following tab triggers::
 	title->
 
 		##########
-		ページタイトル
+		Page Title
 		##########
 
 	sec->
 
 		*************
-		主なセクション
+		Major Section
 		*************
 
 	sub->
 
-		サブセクション
+		Subsection
 		==========
 
 	sss->
 
-		サブサブ セクション
+		SubSubSection
 		-------------
 
 	ssss->
 
-		サブサブサブ セクション
+		SubSubSubSection
 		^^^^^^^^^^^^^^^^
 
 	sssss->
 
-		サブサブサブサブ セクション (!)
+		SubSubSubSubSection (!)
 		"""""""""""""""""""""""
