@@ -1,17 +1,17 @@
 #################
-Create news items
+news items の新規登録
 #################
 
-You now know how you can read data from a database using CodeIgniter, but
-you haven't written any information to the database yet. In this section
-you'll expand your news controller and model created earlier to include
-this functionality.
+CodeIgniterを利用してデータベースからデータを読み取ることができました。
+しかし書き込むことはこれからです。このセクションでは 
+news コントローラーと先ほど作成したModelを拡張して、
+その機能を作ります。
 
-.. note:: This section of the tutorial cannot be completed as certain
-    portions of the framework, like the form helper and the validation
-    library have not been completed yet.
+.. 注意:: このチュートリアルのこのセクションはまだ終わりではありません。
+    フレームワークのホームヘルパーやバリデーション部分、
+    ライブラリが完了していません。
 
-Create a form
+フォームの作成
 -------------
 
 To input data into the database you need to create a form where you can
