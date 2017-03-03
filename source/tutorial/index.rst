@@ -1,28 +1,28 @@
 ########
-Tutorial
+チュートリアル
 ########
 
-This tutorial is intended to introduce you to the CodeIgniter framework
-and the basic principles of MVC architecture. It will show you how a
-basic CodeIgniter application is constructed in step-by-step fashion.
+このチュートリアルは CodeIgniterとMVCアーキテクチャの
+基本原則を紹介するためのものです。基本的なCodeIgniterのアプリケーションを
+構築するための方法をステップバイステップでお見せします。
 
-In this tutorial, you will be creating a **basic news application**. You
-will begin by writing the code that can load static pages. Next, you
-will create a news section that reads news items from a database.
-Finally, you'll add a form to create news items in the database.
+このチュートリアルでは  **ベーシックなニュースアプリ** を作ります。スタティックページを
+読み込むコードを書くところから始めます。次に、
+データベースからニュースを読み込む ニュースセクションを作成します。
+最後に、データベース内のニュースを新規作成するためのフォームを作成します。
 
-This tutorial will primarily focus on:
+このチュートリアルでは次のことにフォーカスしています :
 
--  Model-View-Controller basics
--  Routing basics
--  Form validation
--  Performing basic database queries using "Query Builder"
+-  モデル・ビュー・コントローラー の基本
+-  ルーティングの基本
+-  フォームバリデーション
+-  "クエリビルダ" を使った データベースクエリの実行
 
-The entire tutorial is split up over several pages, each explaining a
-small part of the functionality of the CodeIgniter framework. You'll go
+チュートリアル全体を小さく複数ページに分けて、
+CodeIgniter frameworkの機能のごく一部を説明します。. You'll go
 through the following pages:
 
--  Introduction, this page, which gives you an overview of what to
+-   Introduction, this page, which gives you an overview of what to
    expect.
 -  :doc:`Static pages <static_pages>`, which will teach you the basics
    of controllers, views and routing.
@@ -33,7 +33,7 @@ through the following pages:
 -  :doc:`Conclusion <conclusion>`, which will give you some pointers on
    further reading and other resources.
 
-Enjoy your exploration of the CodeIgniter framework.
+CodeIgniter をお楽しみください。
 
 .. toctree::
 	:hidden:
