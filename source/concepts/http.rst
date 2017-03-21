@@ -1,15 +1,15 @@
 ##########################
-Working With HTTP Requests
+HTTP リクエストを利用した作業
 ##########################
 
-In order to get the most out of CodeIgniter, you need to have a basic understanding of how HTTP requests
-and responses work. Since this is what you work with while developing web applications, understanding the
-concepts behind HTTP is a **must** for all developers that want to be successful.
+CodeIgniterのこの機能を最大限に活用するには、
+HTTPリクエストとレスポンスについての基本を理解しておく必要があります。Since this is what you work with while developing web applications, understanding the
+concepts behind HTTP is a **must** for all developers that want to be successful..
 
-The first part of this chapter gives an overview. After the concepts are out of the way, we will discuss
+はじめに、概要を説明します。After the concepts are out of the way, we will discuss
 how to work with the requests and responses within CodeIgniter.
 
-What is HTTP?
+HTTPとは?
 =============
 
 HTTP is simply a text-based language that allows two machines to talk to each other. When a browser
