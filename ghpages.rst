@@ -1,6 +1,6 @@
 #########################
-Generating the User Guide
-#########################
+ユーザーガイドの生成
+########################
 
 The intent is, eventually, for the in-progress user guide to be automatically
 generated as part of a PR merge. This writeup explains how it can be done manually
@@ -10,7 +10,7 @@ The user guide takes advantage of Github pages, where the "gh-pages" branch of
 a repo, containing HTML only, is accessible through `github.io
 <https://bcit-ci.github.io/CodeIgniter4>`_.
 
-Setup for Repo Maintainers
+セットアップ手順
 ==========================
 
 You already have the repo cloned into ``CodeIgniter4`` in a projects folder.
@@ -20,7 +20,7 @@ Clone the CodeIgniter4 repo again, into ``CodeIgniter4-guide/html``.
 Inside the ``html`` folder, ``git checkout gh-pages``.
 All you should see is the generated HTML for the user guide.
 
-Re-generating the User Guide
+ユーザーガイドの再生成
 ============================
 
 In the ``user_guide_src`` folder, you generate a conventional user guide,
@@ -40,7 +40,7 @@ the ``CodeIgniter4-guide/html`` folder, and then::
 	git commit -S -m "Suitable comment"
 	git push origin gh-pages
 
-Process
+プロセス
 =======
 
 There should be only one maintainer doing this, to avoid collisions.
