@@ -54,7 +54,7 @@ to get all of our posts from our database. To do this, the database
 abstraction layer that is included with CodeIgniter —
 :doc:`Query Builder <../database/query_builder>` — is used. This makes it
 possible to write your 'queries' once and make them work on :doc:`all
-supported database systems <../general/requirements>`. The Model class
+supported database systems <../intro/requirements>`. The Model class
 also allows you to easily work with the Query Builder and provides
 some additional tools to make working with data simpler. Add the
 following code to your model.
@@ -65,7 +65,7 @@ following code to your model.
 	{
 		if ($slug === false)
 		{
-			$this->findAll();
+			return $this->findAll();
 		}
 
 		return $this->asArray()
@@ -179,8 +179,8 @@ and add the next piece of code.
 
 Here, each news item is looped and displayed to the user. You can see we
 wrote our template in PHP mixed with HTML. If you prefer to use a template
-language, you can use CodeIgniter's :doc:`Template
-Parser <../libraries/parser>` class or a third party parser.
+language, you can use CodeIgniter's :doc:`View
+Parser <../general/view_parser>` or a third party parser.
 
 The news overview page is now done, but a page to display individual
 news items is still absent. The model created earlier is made in such

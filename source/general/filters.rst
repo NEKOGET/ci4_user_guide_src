@@ -2,13 +2,13 @@
 Controller Filters
 ##################
 
-Controller Filters allow you to perform actions either before or after the controllers execute. Unlike :doc:`hooks </general/hooks>`,
+Controller Filters allow you to perform actions either before or after the controllers execute. Unlike :doc:`events </general/events>`,
 you can very simply choose which URI's in your application have the filters applied to them. Incoming filters may
 modify the Request, while after filters can act on and even modify the Response, allowing for a lot of flexibility
 and power. Some common examples of tasks that might be performed with filters are:
 
 * Performing CSRF protection on the incoming requests
-* Restricting areas of your site based upon their Role.
+* Restricting areas of your site based upon their Role
 * Perform rate limiting on certain endpoints
 * Display a "Down for Maintenance" page
 * Perform automatic content negotiation
@@ -62,6 +62,10 @@ This is typically used to peform redirects, like in this example::
             return redirect('login');
         }
     }
+
+If a Response instance is returned, the Response will be sent back to the client and script execution will stop.
+This can be useful for implementing rate limiting for API's. See **application/Filters/Throttle.php** for an
+example.
 
 After Filters
 =============

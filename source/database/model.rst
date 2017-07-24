@@ -34,6 +34,7 @@ CodeIgniter does provide a model class that provides a few nice features, includ
 - automatic database connection
 - basic CRUD methods
 - in-model validation
+- automatic pagination
 - and more
 
 This class provides a solid base from which to build your own models, allowing you to
@@ -119,7 +120,7 @@ method.
 
 If true, then any delete* method calls will simply set a flag in the database, instead of
 actually deleting the row. This can preserve data when it might be referenced elsewhere, or
-can maintain a "recylce bin" of objects that can be restored, or even simply preserve it as
+can maintain a "recycle bin" of objects that can be restored, or even simply preserve it as
 part of a security trail. If true, the find* methods will only return non-deleted rows, unless
 the withDeleted() method is called prior to calling the find* method.
 
@@ -147,14 +148,14 @@ are: datetime, date, or int (a PHP timestamp).
 
 **$validationRules**
 
-Contains either an array of validation rules as described in :ref:`_validation-array`
+Contains either an array of validation rules as described in :ref:`validation-array`
 or a string containing the name of a validation group, as described in the same section.
 Described in more detail below.
 
 **$validationMessages**
 
 Contains an array of custom error messages that should be used during validation, as
-described in :ref:`_validation-custom-errors`. Described in more detail below.
+described in :ref:`validation-custom-errors`. Described in more detail below.
 
 **$skipValidation**
 
@@ -162,6 +163,16 @@ Whether validation should be skipped during all ``inserts`` and ``updates``. The
 value is false, meaning that data will always attempt to be validated. This is
 primarily used by the ``skipValidation()`` method, but may be changed to ``true`` so
 this model will never validate.
+
+**$beforeInsert**
+**$afterInsert**
+**$beforeUpdate**
+**$afterUpdate**
+**afterFind**
+**afterDelete**
+
+These arrays allow you to specify callback methods that will be ran on the data at the
+time specified in the property name.
 
 Working With Data
 =================
@@ -201,7 +212,7 @@ all rows that match::
 
 **findAll()**
 
-Returns all results.
+Returns all results::
 
 	$users = $userModel->findAll();
 
@@ -316,7 +327,7 @@ simplest, they might look like this::
 
 		public function __get($key)
 		{
-			if (isset($this->$key))
+			if (property_exists($this, $key))
 			{
 				return $this->$key;
 			}
@@ -324,7 +335,7 @@ simplest, they might look like this::
 
 		public function __set($key, $value)
 		{
-			if (isset($this->$key))
+			if (property_exists($this, $key))
 			{
 				$this->$key = $value;
 			}
@@ -336,7 +347,7 @@ A very simple model to work with this might look like::
 	class JobModel extends \CodeIgniter\Model
 	{
 		protected $table = 'jobs';
-		protected $returnType = '\App\Entities\Job`;
+		protected $returnType = '\App\Entities\Job';
 		protected $allowedFields = [
 			'name', 'description'
 		];
@@ -354,6 +365,9 @@ model's ``save()`` method to inspect the class, grab any public and private prop
 
 	// Save the changes
 	$model->save($job);
+
+.. note:: If you find yourself working with Entities a lot, CodeIgniter provides a built-in :doc:`Entity class </database/entities>`
+	that provides several handy features that make developing Entities simpler.
 
 Deleting Data
 -------------
@@ -417,11 +431,11 @@ be applied. If you have custom error message that you want to use, place them in
 	}
 
 Now, whenever you call the ``insert()``, ``update()``, or ``save()`` methods, the data will be validated. If it fails,
-the model will return boolean **false**. You can use the ``getErrors()`` method to retrieve the validation errors::
+the model will return boolean **false**. You can use the ``errors()`` method to retrieve the validation errors::
 
 	if ($model->save($data) === false)
 	{
-		return view('updateUser', ['errors' => $model->getErrors()];
+		return view('updateUser', ['errors' => $model->errors()];
 	}
 
 This returns an array with the field names and their associated errors that can be used to either show all of the
@@ -561,3 +575,75 @@ If you ever need to decode the hash, you may do so with the **decodeID()** metho
 
 .. note:: While the name is "hashed id", this is not actually a hashed variable, but that term has become
 		common in many circles to represent the encoding of an ID into a short, unique, identifier.
+
+Model Events
+============
+
+There are several points within the model's execution that you can specify multiple callback methods to run.
+These methods can be used to normalize data, hash passwords, save related entities, and much more. The following
+points in the model's execution can be affected, each through a class property: **$beforeInsert**, **$afterInsert**,
+**$beforeUpdate**, **afterUpdate**, **afterFind**, and **afterDelete**.
+
+Defining Callbacks
+------------------
+
+You specify the callbacks by first creating a new class method in your model to use. This class will always
+receive a $data array as its only parameter. The exact contents of the $data array will vary between events, but
+will always contain a key named **data** that contains the primary data passed to original method. In the case
+of the insert* or update* methods, that will be the key/value pairs that are being inserted into the database. The
+main array will also contain the other values passed to the method, and be detailed later. The callback method
+must return the original $data array so other callbacks have the full information.
+
+::
+
+	protected function hashPassword(array $data)
+	{
+		if (! isset($data['data']['password']) return $data;
+
+		$data['data']['password_hash'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+		unse($data['data']['password'];
+
+		return $data;
+	}
+
+Specifying Callbacks To Run
+---------------------------
+
+You specify when to run the callbacks by adding the method name to the appropriate class property (beforeInsert, afterUpdate,
+etc). Multiple callbacks can be added to a single event and they will be processed one after the other. You can
+use the same callback in multiple events::
+
+	protected $beforeInsert = ['hashPassword'];
+	protected $beforeUpdate = ['hashPassword'];
+
+Event Parameters
+----------------
+
+Since the exact data passed to each callback varies a bit, here are the details on what is in the $data parameter
+passed to each event:
+
+================ =========================================================================================================
+Event            $data contents
+================ =========================================================================================================
+beforeInsert	  **data** = the key/value pairs that are being inserted. If an object or Entity class is passed to the insert
+				  method, it is first converted to an array.
+afterInsert		  **data** = the original key/value pairs being inserted. **result** = the results of the insert() method
+				  used through the Query Builder.
+beforeUpdate	  **id** = the primary key of the row being updated. **data** = the key/value pairs that are being
+				  inserted. If an object or Entity class is passed to the insert method, it is first converted to an array.
+afterUpdate		  **id** = the primary key of the row being updated. **data** = the original key/value pairs being updated.
+				  **result** = the results of the update() method used through the Query Builder.
+afterFind		  Varies by find* method. See the following:
+- find()		  **id** = the primary key of the row being searched for. **data** = The resulting row of data, or null if
+				  no result found.
+- findWhere()	  **data** = the resulting rows of data, or null if no result found.
+- findAll()		  **data** = the resulting rows of data, or null if no result found. **limit** = the number of rows to find.
+				  **offset** = the number of rows to skip during the search.
+- first()		  **data** = the resulting row found during the search, or null if none found.
+afterDelete		  Varies by delete* method. See the following:
+- delete()		  **id** = primary key of row being deleted. **purge** boolean whether soft-delete rows should be
+				  hard deleted. **result** = the result of the delete() call on the Query Builder. **data** = unused.
+- deleteWhere()	  **key**/**value** = the key/value pair used to search for rows to delete. **purge** boolean whether
+				  soft-delete rows should be hard deleted. **result** = the result of the delete() call on the Query
+				  Builder. **data** = unused.
+================ =========================================================================================================

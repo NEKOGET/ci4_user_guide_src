@@ -97,7 +97,7 @@ below for more details.
 Using $currentVersion
 =====================
 
-The $currentVersion setting allows you to mark a location that your application should be set at.
+The $currentVersion setting allows you to mark a location that your main application namespace should be set at.
 This is especially helpful for use in a production setting. In your application, you can always
 update the migration to the current version, and not latest to ensure your production and staging
 servers are running the correct schema. On your development servers, you can add additional migrations
@@ -127,9 +127,11 @@ match the name of the database group exactly::
 Namespaces
 ==========
 
-The migration library will automatically scan all namespaces you have defined within 
-**application/Config/Autoload.php** and its ``$psr4`` property for matching directory 
-names. It will include all migrations it finds. 
+The migration library can automatically scan all namespaces you have defined within
+**application/Config/Autoload.php** and its ``$psr4`` property for matching directory
+names. It will include all migrations it finds in Database/Migrations.
+
+Each namespace has it's own version sequence, this will help you upgrade and downgrade each module (namespace) without affecting other namespaces.
 
 For example, assume that we have the the following namespaces defined in our Autoload
 configuration file::
@@ -147,12 +149,12 @@ re-usable, modular code suites.
 Usage Example
 *************
 
-In this example some simple code is placed in **application/controllers/Migrate.php**
+In this example some simple code is placed in **application/Controllers/Migrate.php**
 to update the schema::
 
 	<?php
 
-	class Migrate extends CI_Controller
+	class Migrate extends \CodeIgniter\Controller
 	{
 
 		public function index()
@@ -174,65 +176,105 @@ to update the schema::
 *******************
 Commnand-Line Tools
 *******************
-
-CodeIgniter ships with some tools that are available from the command line to help you work with migrations.
-These tools are not required to use migrations but might make things easier for those of you that wish to use them.
-The tools primarily provide access to the same methods that are available within the MigrationRunner class.
-When running these commands, you should be in the same directory as your application's main index.php file.
+CodeIgniter ships with several :doc:`commands </general/cli_commands>` that are available from the command line to help
+you work with migrations. These tools are not required to use migrations but might make things easier for those of you
+that wish to use them. The tools primarily provide access to the same methods that are available within the MigrationRunner class.
 
 **latest**
 
 Migrates all database groups to the latest available migrations::
 
-  > php index.php migrations latest
+> php ci.php migrate:latest 
+
+You can use (latest) with the following options:
+
+- (-g) to chose database group, otherwise default database group will be used.
+- (-n) to choose namespace, otherwise (App) namespace will be used.
+- (all) to migrate all namespaces to the latest migration
+
+This example will migrate Blog namespace to latest::
+
+> php ci.php migrate:latest -g test -n Blog
+ 
 
 **current**
 
-Migrates all database groups to match the version set in ``$currentVersion``. This will migrate both
+Migrates the (App) namespace to match the version set in ``$currentVersion``. This will migrate both
 up and down as needed to match the specified version::
 
-  > php index.php migrations current
+  > php ci.php migrate:current
+
+You can use (current) with the following options:
+
+- (-g) to chose database group, otherwise default database group will be used.
 
 **version**
 
-Migrates all database groups to the specified version. If no version is provided, you will be prompted
+Migrates to the specified version. If no version is provided, you will be prompted
 for the version. ::
 
   // Asks you for the version...
-  > php index.php migrations version
+  > php ci.php migrate:version
   > Version:
 
   // Sequential
-  > php index.php migrations version 007
+  > php ci.php migrate:version 007
 
   // Timestamp
-  > php index.php migrations version 20161426211300
+  > php ci.php migrate:version 20161426211300
+
+You can use (version) with the following options:
+
+- (-g) to chose database group, otherwise default database group will be used.
+- (-n) to choose namespace, , otherwise (App) namespace will be used.
 
 **rollback**
 
 Rolls back all migrations, taking all database groups to a blank slate, effectively migration 0::
 
-  > php index.php migrations rollback
+  > php ci.php migrate:rollback
+
+You can use (rollback) with the following options:
+
+- (-g) to chose database group, otherwise default database group will be used.
+- (-n) to choose namespace, otherwise (App) namespace will be used.
+- (all) to migrate all namespaces to the latest migration
+
 
 **refresh**
 
 Refreshes the database state by first rolling back all migrations, and then migrating to the latest version::
 
-  > php index.php migrations refresh
+  > php ci.php migrate:refresh
+
+You can use (refresh) with the following options:
+
+- (-g) to chose database group, otherwise default database group will be used.
+- (-n) to choose namespace, otherwise (App) namespace will be used.
+- (all) to migrate all namespaces to the latest migration
+
 
 **status**
 
 Displays a list of all migrations and the date and time they were ran, or '--' if they have not be ran::
 
-  > php index.php migrations status
-  Filename                              Migrated On
-  20150101101500_First_migration.php    2016-04-25 04:44:22
+  > php ci.php migrate:status
+  Filename               Migrated On
+  First_migration.php    2016-04-25 04:44:22
+
+You can use (refresh) with the following options:
+
+- (-g) to chose database group, otherwise default database group will be used.
 
 **create**
 
 Creates a skeleton migration file in **application/Database/Migrations** using the timestamp format::
 
-  > php index.php migrations create [filename]
+  > php ci.php migrate:create [filename]
+
+You can use (create) with the following options:
+
+- (-n) to choose namespace, otherwise (App) namespace will be used.
 
 *********************
 Migration Preferences
@@ -256,8 +298,9 @@ Class Reference
 
 .. php:class:: CodeIgniter\Database\MigrationRunner
 
-	.. php:method:: current()
+	.. php:method:: current($group)
 
+		:param	mixed	$group: database group name, if null (App) namespace will be used.
 		:returns:	TRUE if no migrations are found, current version string on success, FALSE on failure
 		:rtype:	mixed
 
@@ -271,17 +314,29 @@ Class Reference
 
 		An array of migration filenames are returned that are found in the **path** property.
 
-	.. php:method:: latest()
+	.. php:method:: latest($namespace, $group)
 
+		:param	mixed	$namespace: application namespace, if null (App) namespace will be used.
+		:param	mixed	$group: database group name, if null default database group will be used.
 		:returns:	Current version string on success, FALSE on failure
 		:rtype:	mixed
 
 		This works much the same way as ``current()`` but instead of looking for
 		the ``$currentVersion`` the Migration class will use the very
 		newest migration found in the filesystem.
+	.. php:method:: latestAll($group)
 
-	.. php:method:: version($target_version)
+		:param	mixed	$group: database group name, if null default database group will be used.
+		:returns:	TRUE on success, FALSE on failure
+		:rtype:	mixed
 
+		This works much the same way as ``latest()`` but instead of looking for
+		one namespace, the Migration class will use the very
+		newest migration found for all namespaces.
+	.. php:method:: version($target_version, $namespace, $group)
+
+		:param	mixed	$namespace: application namespace, if null (App) namespace will be used.
+		:param	mixed	$group: database group name, if null default database group will be used.
 		:param	mixed	$target_version: Migration version to process
 		:returns:	TRUE if no migrations are found, current version string on success, FALSE on failure
 		:rtype:	mixed
@@ -292,14 +347,23 @@ Class Reference
 
 			$migration->version(5);
 
-	.. php:method:: setPath($path)
+	.. php:method:: setNamespace($namespace)
 
-	  :param  string  $path: The directory where migration files can be found.
+	  :param  string  $namespace: application namespace.
 	  :returns:   The current MigrationRunner instance
 	  :rtype:     CodeIgniter\Database\MigrationRunner
 
 	  Sets the path the library should look for migration files::
 
-	    $migration->setPath($path)
+	    $migration->setNamespace($path)
 	              ->latest();
+	.. php:method:: setGroup($group)
 
+	  :param  string  $group: database group name.
+	  :returns:   The current MigrationRunner instance
+	  :rtype:     CodeIgniter\Database\MigrationRunner
+
+	  Sets the path the library should look for migration files::
+
+	    $migration->setNamespace($path)
+	              ->latest();

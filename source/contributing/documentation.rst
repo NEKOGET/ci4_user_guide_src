@@ -27,9 +27,9 @@ Codeigniterではさまざまな形式でそのドキュメントを生成する
 
   <div class="custom-index container"></div>
 
-この <div>は、ドキュメントのJavascriptを動的に挿入するために
-フックとして
-挿入されます。
+The <div> that is inserted as raw HTML is a event for the documentation's
+JavaScript to dynamically add links to any function and method definitions
+contained in the current page.
 
 **************
 T必要なツール
