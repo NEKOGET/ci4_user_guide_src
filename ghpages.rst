@@ -43,7 +43,7 @@ the ``CodeIgniter4-guide/html`` folder, and then::
 プロセス
 =======
 
-There should be only one maintainer doing this, to avoid collisions.
+衝突を避けるために、PRのmerge作業を行うメンテナーは1名です。
 The user guide would get regenerated whenever there is a PR merge
 that affects it.
 
