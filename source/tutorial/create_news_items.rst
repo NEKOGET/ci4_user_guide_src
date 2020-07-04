@@ -1,53 +1,45 @@
-#################
-news items の新規登録
-#################
+Create news items
+###############################################################################
 
-CodeIgniterを利用してデータベースからデータを読み取ることができました。
-しかし書き込むことはこれからです。このセクションでは 
-news コントローラーと先ほど作成したModelを拡張して、
-その機能を作ります。
+You now know how you can read data from a database using CodeIgniter, but
+you haven't written any information to the database yet. In this section,
+you'll expand your news controller and model created earlier to include
+this functionality.
 
-.. 注意:: このチュートリアルのこのセクションはまだ終わりではありません。
-    フレームワークのホームヘルパーやバリデーション部分、
-    ライブラリが完了していません。
+Create a form
+-------------------------------------------------------
 
-フォームの作成
--------------
-
-To input data into the database you need to create a form where you can
+To input data into the database, you need to create a form where you can
 input the information to be stored. This means you'll be needing a form
 with two fields, one for the title and one for the text. You'll derive
-the slug from our title in the model. Create the new view at
-*application/Views/News/Create.php*.
+the slug from our title in the model. Create a new view at
+**app/Views/news/create.php**.
 
 ::
 
     <h2><?= esc($title); ?></h2>
 
-    <?= validation_errors(); ?>
+    <?= \Config\Services::validation()->listErrors(); ?>
 
-    <?= form_open('news/create'); ?>
+    <form action="/news/create" method="post">
+        <?= csrf_field() ?>
 
         <label for="title">Title</label>
         <input type="input" name="title" /><br />
 
-        <label for="text">Text</label>
-        <textarea name="text"></textarea><br />
+        <label for="body">Text</label>
+        <textarea name="body"></textarea><br />
 
         <input type="submit" name="submit" value="Create news item" />
 
     </form>
 
-There are only two things here that probably look unfamiliar to you: the
-``form_open()`` function and the ``validation_errors()`` function.
+There are probably only two things here that look unfamiliar. The
+``\Config\Services::validation()->listErrors()`` function is used to report
+errors related to form validation. The ``csrf_field()`` function creates
+a hidden input with a CSRF token that helps protect against some common attacks.
 
-The first function is provided by the :doc:`form
-helper <../helpers/form_helper>` and renders the form element and
-adds extra functionality, like adding a hidden :doc:`CSRF prevention
-field <../libraries/security>`. The latter is used to report
-errors related to form validation.
-
-Go back to your news controller. You're going to do two things here,
+Go back to your ``News`` controller. You're going to do two things here,
 check whether the form was submitted and whether the submitted data
 passed the validation rules. You'll use the :doc:`form
 validation <../libraries/validation>` library to do this.
@@ -56,56 +48,62 @@ validation <../libraries/validation>` library to do this.
 
     public function create()
     {
-        helper('form');
         $model = new NewsModel();
 
-        if (! $this->validate($this->request, [
-            'title' => 'required|min[3]|max[255]',
-            'text'  => 'required'
-        ]))
+        if ($this->request->getMethod() === 'post' && $this->validate([
+                'title' => 'required|min_length[3]|max_length[255]',
+                'body'  => 'required'
+            ]))
         {
-            echo view('Templates/Header', ['title' => 'Create a news item']);
-            echo view('News/Create');
-            echo view('Templates/Footer');
+            $model->save([
+                'title' => $this->request->getPost('title'),
+                'slug'  => url_title($this->request->getPost('title'), '-', TRUE),
+                'body'  => $this->request->getPost('body'),
+            ]);
 
+            echo view('news/success');
+            
         }
         else
         {
-            $model->save([
-                'title' => $this->request->getVar('title'),
-                'slug'  => url_title($this->request->getVar('title')),
-                'text'  => $this->request->getVar('text'),
-            ]);
-            echo view('News/Success');
+            echo view('templates/header', ['title' => 'Create a news item']);
+            echo view('news/create');
+            echo view('templates/footer');
         }
     }
 
-The code above adds a lot of functionality. The first few lines load the
-form helper and the NewsModel. After that, the Controller-provided helper
-function is used to validate the $_POST fields. In this case the title and
-text fields are required.
+The code above adds a lot of functionality. First we load the NewsModel.
+After that, we check if we deal with the ``POST`` request and then
+the Controller-provided helper function is used to validate
+the $_POST fields. In this case, the title and text fields are required.
 
 CodeIgniter has a powerful validation library as demonstrated
 above. You can read :doc:`more about this library
 here <../libraries/validation>`.
 
 Continuing down, you can see a condition that checks whether the form
-validation ran successfully. If it did not, the form is displayed, if it
+validation ran successfully. If it did not, the form is displayed; if it
 was submitted **and** passed all the rules, the model is called. This
 takes care of passing the news item into the model.
-This contains a new function, url\_title(). This function -
+This contains a new function ``url_title()``. This function -
 provided by the :doc:`URL helper <../helpers/url_helper>` - strips down
 the string you pass it, replacing all spaces by dashes (-) and makes
 sure everything is in lowercase characters. This leaves you with a nice
 slug, perfect for creating URIs.
 
 After this, a view is loaded to display a success message. Create a view at
-**application/Views/News/Success.php** and write a success message.
+**app/Views/news/success.php** and write a success message.
 
-Model
------
+This could be as simple as:
 
-The only thing that remains is ensuring that your model is setup
+::
+
+    News item created successfully.
+
+Model Updating
+-------------------------------------------------------
+
+The only thing that remains is ensuring that your model is set up
 to allow data to be saved properly. The ``save()`` method that was
 used will determine whether the information should be inserted
 or if the row already exists and should be updated, based on the presence
@@ -119,12 +117,14 @@ fields in the ``$allowedFields`` property.
 
 ::
 
-    <?php
-    class NewsModel extends \CodeIgniter\Model
+    <?php namespace App\Models;
+    use CodeIgniter\Model;
+
+    class NewsModel extends Model
     {
         protected $table = 'news';
 
-        protected $allowedFields = ['title', 'slug', 'text'];
+        protected $allowedFields = ['title', 'slug', 'body'];
     }
 
 This new property now contains the fields that we allow to be saved to the
@@ -133,23 +133,44 @@ never need to do that, since it is an auto-incrementing field in the database.
 This helps protect against Mass Assignment Vulnerabilities. If your model is
 handling your timestamps, you would also leave those out.
 
-
 Routing
--------
+-------------------------------------------------------
 
 Before you can start adding news items into your CodeIgniter application
-you have to add an extra rule to *Config/Routes.php* file. Make sure your
-file contains the following. This makes sure CodeIgniter sees 'create'
-as a method instead of a news item's slug.
+you have to add an extra rule to **app/Config/Routes.php** file. Make sure your
+file contains the following. This makes sure CodeIgniter sees ``create``
+as a method instead of a news item's slug. You can read more about different
+routing types :doc:`here </incoming/routing>`.
 
 ::
 
-    $routes->post('news/create', 'News::create');
-    $routes->add('news/(:segment)', 'News::view/$1');
+    $routes->match(['get', 'post'], 'news/create', 'News::create');
+    $routes->get('news/(:segment)', 'News::view/$1');
     $routes->get('news', 'News::index');
-    $routes->add('(:any)', 'Pages::view/$1');
+    $routes->get('(:any)', 'Pages::view/$1');
 
 Now point your browser to your local development environment where you
-installed CodeIgniter and add index.php/news/create to the URL.
-Congratulations, you just created your first CodeIgniter application!
+installed CodeIgniter and add ``/news/create`` to the URL.
 Add some news and check out the different pages you made.
+
+.. image:: ../images/tutorial3.png
+    :align: center
+    :height: 415px
+    :width: 45%
+
+.. image:: ../images/tutorial4.png
+    :align: center
+    :height: 415px
+    :width: 45%
+
+Congratulations
+-------------------------------------------------------
+
+You just completed your first CodeIgniter4 application!
+
+The image underneath shows your project's **app** folder,
+with all of the files that you created in green.
+The two modified configuration files (Database & Routes) are not shown.
+
+.. image:: ../images/tutorial9.png
+    :align: left

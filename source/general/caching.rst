@@ -18,12 +18,12 @@ How Does Caching Work?
 Caching can be enabled on a per-page basis, and you can set the length
 of time that a page should remain cached before being refreshed. When a
 page is loaded for the first time, the file will be cached using the
-currently configured cache engine. On subsequent page loads the cache file
+currently configured cache engine. On subsequent page loads, the cache file
 will be retrieved and sent to the requesting user's browser. If it has
 expired, it will be deleted and refreshed before being sent to the
 browser.
 
-.. note: The Benchmark tag is not cached so you can still view your page
+.. note:: The Benchmark tag is not cached so you can still view your page
 	load speed when caching is enabled.
 
 Enabling Caching
@@ -45,7 +45,7 @@ you. Once the tag is in place, your pages will begin being cached.
 	your output, you have to manually delete your cache files.
 
 .. note:: Before the cache files can be written you must set the cache
-	engine up by editing **application/Config/Cache.php**.
+	engine up by editing **app/Config/Cache.php**.
 
 Deleting Caches
 ===============

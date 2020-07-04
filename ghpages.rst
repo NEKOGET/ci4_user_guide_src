@@ -1,51 +1,52 @@
 #########################
-ユーザーガイドの生成
-########################
+Generating the User Guide
+#########################
 
-ユーザーガイドは、PRマージの一部として自動的に生成される編集中のユーザーガイドです。この記事では、どのようにメンテナンスするかを
-i説明します。
+The intent is, eventually, for the in-progress user guide to be automatically
+generated as part of a PR merge. This writeup explains how it can be done manually
+in the meantime.
 
-このユーザーガイドは  GitHubを利用しています。 ここではHTMLのみを含む "gh-pages" ブランチ
-に触れます。`github.io
+The user guide takes advantage of Github pages, where the "gh-pages" branch of
+a repo, containing HTML only, is accessible through `github.io
 <https://bcit-ci.github.io/CodeIgniter4>`_.
 
-セットアップ手順
+Setup for Repo Maintainers
 ==========================
 
-すでに ``CodeIgniter4`` プロジェクトフォルダをクローンしていた場合。
-それと同じレベルのフォルダ``CodeIgniter4-guide`` を作成します　。
- CodeIgniter4レポジトリを再び、 ``CodeIgniter4-guide/html`` にクローンします。
+You already have the repo cloned into ``CodeIgniter4`` in a projects folder.
+Create another folder at the same level as this, ``CodeIgniter4-guide``.
+Clone the CodeIgniter4 repo again, into ``CodeIgniter4-guide/html``.
 
- ``html`` フォルダーの中で ``git checkout gh-pages`` します。
-表示されるのはユーザーガイド用に生成されたHTMLだけです。
+Inside the ``html`` folder, ``git checkout gh-pages``.
+All you should see is the generated HTML for the user guide.
 
-ユーザーガイドの再生成
+Re-generating the User Guide
 ============================
 
-``user_guide_src``フォルダにはテスト用のコマンドを
-使用します。::
+In the ``user_guide_src`` folder, you generate a conventional user guide,
+for testing, using the command::
 
 	make html
 
-ターゲットが設定されていて同じHTMLを生成します。
- ``html`` フォルダ内に2番目のレポジトリのクローンが生成されます::
+An additional target has been configured, which will generate the same
+HTML but inside the ``html`` folder of the second repo clone::
 
 	make ghpages
 
-このターゲットを作成した後
- ``CodeIgniter4-guide/html`` フォルダに切り替えてオンラインのユーザーガイドを更新しましょう。::
+After making this target, update the online user guide by switching to
+the ``CodeIgniter4-guide/html`` folder, and then::
 
 	git add .
 	git commit -S -m "Suitable comment"
 	git push origin gh-pages
 
-プロセス
+Process
 =======
 
-衝突を避けるために、PRのmerge作業を行うメンテナーは1名です。
+There should be only one maintainer doing this, to avoid collisions.
 The user guide would get regenerated whenever there is a PR merge
 that affects it.
 
-注意: ``user_guide_src/doctree`` フォルダーを
-再構築の前に削除する必要があります。
-特に ``html``  をなんどもターゲットにしている場合はTOCが正しく再構築されていることを確認してください。.
+Note: You might have to delete the ``user_guide_src/doctree`` folder before
+making the ``gh-pages`` version of the guide, to make sure that the TOC
+is properly rebuilt, especially if you are rebuilding the ``html`` target a number of times.

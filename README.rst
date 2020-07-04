@@ -1,63 +1,127 @@
 ######################
-CodeIgniter ユーザーガイド
+CodeIgniter User Guide
 ######################
 
 ******************
-セットアップ手順
+Setup Instructions
 ******************
 
-CodeIgniterユーザガイドでは、Sphinxを使用して
-さまざまな形式のドキュメントとして出力します。ページは人間が読めるように
-`ReStructured Text <http://sphinx.pocoo.org/rest.html>`_ 形式で書かれています。
+The CodeIgniter user guide uses Sphinx to manage the documentation and
+output it to various formats. Pages are written in human-readable
+`ReStructured Text <https://en.wikipedia.org/wiki/ReStructuredText>`_ format.
 
-前提条件
+Prerequisites
 =============
 
-SphinxにはPythonが必要です。PythonはOS Xを利用している場合にはすでにインストールされています。
-``python`` コマンドをパラメータなしで実行すると、
-ターミナルで確認できますロードし、
-インストールしたバージョンを教えてください。あなたが2.7以上でないなら、次のURLから2.7.2をインストールしてください
-http://python.org/download/releases/2.7.2/
+Python
+------
 
-インストール
+Sphinx requires Python 3.5+, which may already be installed if you are running
+OS X or Linux. You can confirm in a Terminal window by executing ``python``
+or ``python3``.
+
+.. code-block:: bash
+
+	python --version
+	Python 2.7.17
+
+	python3 --version
+	Python 3.6.9
+
+	# For Windows using the Python Launcher
+	py -3 --version
+	Python 3.8.1
+
+If you're not on 3.5+, go ahead and install the latest 3.x version from
+`Python.org <https://www.python.org/downloads/>`_. Linux users should use their
+operating systems' built-in Package Managers to update.
+
+pip
+---
+
+Now that you have Python 3.x up and running, we will be installing
+`pip <https://pip.pypa.io/en/stable/>`_ (The Python Package Installer).
+
+You can check if you have pip installed with ``pip`` or ``pip3``.
+As you can see pip follow the same naming convention as Python.
+Please take note that it should say ``python 3.x`` at the very end.
+
+.. code-block:: bash
+
+	pip --version
+	pip 9.0.1 from /usr/lib/python2.7/dist-packages (python 2.7)
+
+	pip3 --version
+	pip 9.0.1 from /usr/lib/python3/dist-packages (python 3.6)
+
+	# For Windows using the Python Launcher
+	py -3 -m pip --version
+	pip 20.0.2 from C:\Users\<username>\AppData\Local\Programs\Python\Python38\lib\site-packages\pip (python 3.8)
+
+Linux
+^^^^^
+
+`Installing pip/setuptools/wheel with Linux Package Managers
+<https://packaging.python.org/guides/installing-using-linux-tools/>`_
+
+Others
+^^^^^^
+
+pip is already installed if you are using Python 3.5+ downloaded from
+`Python.org <https://www.python.org/downloads/>`_.
+
+Installation
 ============
 
-1. `easy_install <http://peak.telecommunity.com/DevCenter/EasyInstall#installing-easy-install>`_ をインストール
-2. ``easy_install "sphinx==1.4.5"``
-3. ``easy_install sphinxcontrib-phpdomain``
-4. CI Lexerをインストールすると PHP, HTML, CSS, と JavaScript を使った例文に対してシンタックスハイライトを使用することができます。 ( *cilexer/README* を参照)
-5. ``cd user_guide_src``
-6. ``make html``
+Now we need to install Sphinx and it's dependencies. Choose ``pip`` or ``pip3``
+depending on operative system. After this step you need to restart your Terminal
+window as Python won't find all applications we just installed othervise.
 
-ドキュメントの編集と作成
+.. code-block:: bash
+
+	pip install -r user_guide_src/requirements.txt
+
+	pip3 install -r user_guide_src/requirements.txt
+
+	# For Windows using the Python Launcher
+	py -3 -m pip install -r user_guide_src/requirements.txt
+
+It's time to wrap things up and generate the documentation.
+
+.. code-block:: bash
+
+	cd user_guide_src
+	make html
+
+Editing and Creating Documentation
 ==================================
 
-すべてのソースファイルは *source/* 以下にあります。 新しいドキュメントを追加したり
-既存のドキュメントの変更修正をする場所です。コードの変更と同様に、
-feature ブランチから作業し、
- このレポジトリの *develop* ブランチにプルリクエストを行うことをお勧めします。
+All of the source files exist under *source/* and is where you will add new
+documentation or modify existing documentation. Just as with code changes,
+we recommend working from feature branches and making pull requests to
+the *develop* branch of this repo.
 
-HTMLはどこにあるの？
+So where's the HTML?
 ====================
 
-HTMLドキュメントは読点ユーザがまず目にするドキュメントであり、
-私たちが最も気になるところですが
-ビルドファイルの履歴には価値がないためソース管理されません。そのため
-それらを表示をしたい場合にはソースコードからビルドします。HTMLをビルドすることは
-とても簡単です。あなたのユーザガイドのルートディレクトリで
-インストール手順の最後に使用したコマンドを実行してください。
+Obviously, the HTML documentation is what we care most about, as it is the
+primary documentation that our users encounter. Since revisions to the built
+files are not of value, they are not under source control. This also allows
+you to regenerate as necessary if you want to "preview" your work. Generating
+the HTML is very simple. From the root directory of your user guide repo
+fork issue the command you used at the end of the installation instructions::
 
 	make html
 
-素晴らしく完璧にレンダリングされたユーザーガイドとその画像は
-*build/html/* の中に保存されます。HTMLがビルドされると
-変更されたファイルのみを再構築し
-かなりの時間を節約します。何らかの理由でビルドファイルを "リセット" したい場合は
- *build* ディレクトリの中身を削除して再度ビルドしてください。 
+You will see it do a whiz-bang compilation, at which point the fully rendered
+user guide and images will be in *build/html/*. After the HTML has been built,
+each successive build will only rebuild files that have changed, saving
+considerable time. If for any reason you want to "reset" your build files,
+simply delete the *build* folder's contents and rebuild.
 
 ***************
-スタイルガイドライン
+Style Guideline
 ***************
 
-Sphinxを使用してCodeIgniterを文書化する際の一般的なガイドラインについては
-source/documentation/index.rst を参照してください。
+Please refer to /contributing/documentation.rst for general guidelines for
+using Sphinx to document CodeIgniter.

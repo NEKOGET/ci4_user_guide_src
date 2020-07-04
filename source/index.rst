@@ -1,17 +1,6 @@
 #######################
-CodeIgniter4 ユーザーガイド
+CodeIgniter4 User Guide
 #######################
-
-- :doc:`ライセンス契約  <license>`
-- :doc:`変更履歴 <changelog>`
-
-.. contents::
-   :local:
-   :depth: 2
-
-*******
-ようこそ
-*******
 
 .. toctree::
 	:includehidden:
@@ -19,20 +8,19 @@ CodeIgniter4 ユーザーガイド
 
         intro/index
 
-************
-インストール
-************
+***************
+Getting Started
+***************
 
 .. toctree::
-	:includehidden:
 	:maxdepth: 2
 	:titlesonly:
 
 	installation/index
 
-********
-チュートリアル
-********
+****************************
+Build Your First Application
+****************************
 
 .. toctree::
 	:includehidden:
@@ -40,34 +28,36 @@ CodeIgniter4 ユーザーガイド
 
     	tutorial/index
 
-*********************
-CodeIgniter4 の概要
-*********************
+*************************
+Overview & General Topics
+*************************
+
 .. toctree::
-   :titlesonly:
+	:titlesonly:
 
-   concepts/index
-
-**************
-一般的なトピック
-**************
+	concepts/index
 
 .. toctree::
 	:titlesonly:
 
 	general/index
 
-*****************
-ライブラリ リファレンス
-*****************
+****************
+Request Handling
+****************
 
 .. toctree::
 	:titlesonly:
 
-	libraries/index
+	incoming/index
+
+.. toctree::
+	:titlesonly:
+
+	outgoing/index
 
 ******************
-データーベースリファレンス
+Handling Databases
 ******************
 
 .. toctree::
@@ -75,21 +65,52 @@ CodeIgniter4 の概要
 
 	database/index
 
-****************
-ヘルパー リファレンス
-****************
+.. toctree::
+	:titlesonly:
+
+	models/index
+
+.. toctree::
+	:titlesonly:
+
+	dbmgmt/index
+
+
+*******************
+Libraries & Helpers
+*******************
+
+.. toctree::
+	:titlesonly:
+
+	libraries/index
 
 .. toctree::
 	:titlesonly:
 
 	helpers/index
 
-
-***************************
-CodeIgniterへの貢献
-***************************
+***************
+Advanced Topics
+***************
 
 .. toctree::
 	:titlesonly:
 
-   	contributing/index
+	testing/index
+
+.. toctree::
+	:titlesonly:
+
+	cli/index
+
+.. toctree::
+	:titlesonly:
+
+	extending/index
+
+.. toctree::
+        :hidden:
+
+        license
+        changelogs/index

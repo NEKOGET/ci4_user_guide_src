@@ -18,7 +18,7 @@ CodeIgniter's Approach to Transactions
 CodeIgniter utilizes an approach to transactions that is very similar to
 the process used by the popular database class ADODB. We've chosen that
 approach because it greatly simplifies the process of running
-transactions. In most cases all that is required are two lines of code.
+transactions. In most cases, all that is required is two lines of code.
 
 Traditionally, transactions have required a fair amount of work to
 implement since they demand that you keep track of your queries and
@@ -42,13 +42,13 @@ follows::
 	$this->db->transComplete();
 
 You can run as many queries as you want between the start/complete
-functions and they will all be committed or rolled back based on success
+functions and they will all be committed or rolled back based on the success
 or failure of any given query.
 
 Strict Mode
 ===========
 
-By default CodeIgniter runs all transactions in Strict Mode. When strict
+By default, CodeIgniter runs all transactions in Strict Mode. When strict
 mode is enabled, if you are running multiple groups of transactions, if
 one group fails all groups will be rolled back. If strict mode is
 disabled, each group is treated independently, meaning a failure of one
@@ -75,20 +75,19 @@ debugging is turned off, you can manage your own errors like this::
 		// generate an error... or use the log_message() function to log your error
 	}
 
-Enabling Transactions
-=====================
+Disabling Transactions
+======================
 
-Transactions are enabled automatically the moment you use
-$this->db->transStart(). If you would like to disable transactions you
+Transactions are enabled by default. If you would like to disable transactions you
 can do so using $this->db->transOff()::
 
 	$this->db->transOff();
 
-	$this->db->trans_Start();
+	$this->db->transStart();
 	$this->db->query('AN SQL QUERY...');
 	$this->db->transComplete();
 
-When transactions are disabled, your queries will be auto-commited, just
+When transactions are disabled, your queries will be auto-committed, just
 as they are when running queries without transactions.
 
 Test Mode

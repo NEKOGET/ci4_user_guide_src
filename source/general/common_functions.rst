@@ -2,11 +2,13 @@
 Global Functions and Constants
 ##############################
 
-CodeIgniter uses provides a few functions and variables that are globally defined, and are available to you at any point.
+CodeIgniter provides a few functions and variables that are globally defined, and are available to you at any point.
 These do not require loading any additional libraries or helpers.
 
-.. contents:: Page Contents
-	:local:
+.. contents::
+    :local:
+    :depth: 2
+
 
 ================
 Global Functions
@@ -23,7 +25,7 @@ Service Accessors
 
     If no $key is provided, will return the Cache engine instance. If a $key
     is provided, will return the value of $key as stored in the cache currently,
-    or false if no value is found.
+    or null if no value is found.
 
     Examples::
 
@@ -51,10 +53,10 @@ Service Accessors
 	:param   string   $context: The escaping context. Default is 'html'.
 	:param   string   $encoding: The character encoding of the string.
 	:returns: The escaped data.
-	:rtype: string
+	:rtype: mixed
 
 	Escapes data for inclusion in web pages, to help prevent XSS attacks.
-	This uses the Zend Escaper library to handle the actual filtering of the data.
+	This uses the Laminas Escaper library to handle the actual filtering of the data.
 
 	If $data is a string, then it simply escapes and returns it.
 	If $data is an array, then it loops over it, escaping each 'value' of the key/value pairs.
@@ -63,20 +65,57 @@ Service Accessors
 
 .. php:function:: helper( $filename )
 
-	:param   string   $filename: The name of the helper file to load.
+	:param   string|array  $filename: The name of the helper file to load, or an array of names.
 
 	Loads a helper file.
 
 	For full details, see the :doc:`helpers` page.
 
-.. php:function:: lang(string $line[, array $args]): string
+.. php:function:: lang($line[, $args[, $locale ]])
 
 	:param string $line: The line of text to retrieve
 	:param array  $args: An array of data to substitute for placeholders.
+	:param string $locale: Specify a different locale to be used instead of default one.
 
 	Retrieves a locale-specific file based on an alias string.
 
-	For more information, see the :doc:`Localization </libraries/localization>` page.
+	For more information, see the :doc:`Localization </outgoing/localization>` page.
+
+.. php:function:: model($name [, $getShared = true [, &$conn = null ]])
+
+    :param string                   $name:
+    :param boolean                  $getShared:
+    :param ConnectionInterface|null $conn:
+    :returns: More simple way of getting model instances
+    :rtype: mixed
+
+.. php:function:: old( $key[, $default = null, [, $escape = 'html' ]] )
+
+	:param string $key: The name of the old form data to check for.
+	:param mixed  $default: The default value to return if $key doesn't exist.
+	:param mixed  $escape: An `escape <#esc>`_ context or false to disable it.
+	:returns: The value of the defined key, or the default value.
+	:rtype: mixed
+
+	Provides a simple way to access "old input data" from submitting a form.
+
+	Example::
+
+		// in controller, checking form submittal
+		if (! $model->save($user))
+		{
+			// 'withInput' is what specifies "old data"
+			// should be saved.
+			return redirect()->back()->withInput();
+		}
+
+		// In the view
+		<input type="email" name="email" value="<?= old('email') ?>">
+		// Or with arrays
+		<input type="email" name="user[email]" value="<?= old('user.email') ?>">
+
+.. note:: If you are using the :doc:`form helper </helpers/form_helper>`, this feature is built-in. You only
+		need to use this function when not using the form helper.
 
 .. php:function:: session( [$key] )
 
@@ -133,10 +172,28 @@ Service Accessors
 
 		echo view('user_profile', $data);
 
-	For more details, see the :doc:`Views <views>` page.
+	For more details, see the :doc:`Views </outgoing/views>` page.
+
+.. php:function:: view_cell ( $library [, $params = null [, $ttl = 0 [, $cacheName = null]]] )
+
+    :param string      $library:
+    :param null        $params:
+    :param integer     $ttl:
+    :param string|null $cacheName:
+    :returns: View cells are used within views to insert HTML chunks that are managed by other classes.
+    :rtype: string
+
+    For more details, see the :doc:`View Cells </outgoing/view_cells>` page.
 
 Miscellaneous Functions
 =======================
+
+.. php:function:: app_timezone ()
+
+    :returns: The timezone the application has been set to display dates in.
+    :rtype: string
+
+    Returns the timezone the application has been set to display dates in.
 
 .. php:function:: csrf_token ()
 
@@ -144,6 +201,13 @@ Miscellaneous Functions
 	:rtype: string
 
 	Returns the name of the current CSRF token.
+
+.. php:function:: csrf_header ()
+
+	:returns: The name of the header for current CSRF token.
+	:rtype: string
+
+	The name of the header for current CSRF token.
 
 .. php:function:: csrf_hash ()
 
@@ -157,9 +221,18 @@ Miscellaneous Functions
 	:returns: A string with the HTML for hidden input with all required CSRF information.
 	:rtype: string
 
-	Returns a hidden input with the CSRF information already inserted:
+	Returns a hidden input with the CSRF information already inserted::
 
 		<input type="hidden" name="{csrf_token}" value="{csrf_hash}">
+
+.. php:function:: csrf_meta ()
+
+	:returns: A string with the HTML for meta tag with all required CSRF information.
+	:rtype: string
+
+	Returns a meta tag with the CSRF information already inserted::
+
+		<meta name="{csrf_header}" content="{csrf_hash}">
 
 .. php:function:: force_https ( $duration = 31536000 [, $request = null [, $response = null]] )
 
@@ -172,20 +245,32 @@ Miscellaneous Functions
 	but through HTTPS. Will set the HTTP Strict Transport Security header, which instructs
 	modern browsers to automatically modify any HTTP requests to HTTPS requests for the $duration.
 
+.. php:function:: function_usable ( $function_name )
+
+    :param string $function_name: Function to check for
+    :returns: TRUE if the function exists and is safe to call, FALSE otherwise.
+    :rtype: bool
+
 .. php:function:: is_cli ()
 
 	:returns: TRUE if the script is being executed from the command line or FALSE otherwise.
 	:rtype: bool
 
-.. php:function:: log_message ($level, $message [, array $context])
+.. php:function:: is_really_writable ( $file )
+
+    :param string $file: The filename being checked.
+    :returns: TRUE if you can write to the file, FALSE otherwise.
+    :rtype: bool
+
+.. php:function:: log_message ($level, $message [, $context])
 
 	:param   string   $level: The level of severity
 	:param   string   $message: The message that is to be logged.
 	:param   array    $context: An associative array of tags and their values that should be replaced in $message
-	:returns: TRUE if was logged succesfully or FALSE if there was a problem logging it
+	:returns: TRUE if was logged successfully or FALSE if there was a problem logging it
 	:rtype: bool
 
-	Logs a message using the Log Handlers defined in **application/Config/Logger.php**.
+	Logs a message using the Log Handlers defined in **app/Config/Logger.php**.
 
 	Level can be one of the following values: **emergency**, **alert**, **critical**, **error**, **warning**,
 	**notice**, **info**, or **debug**.
@@ -193,34 +278,43 @@ Miscellaneous Functions
 	Context can be used to substitute values in the message string. For full details, see the
 	:doc:`Logging Information <logging>` page.
 
-.. php:function:: redirect( $uri[, ...$params ] )
+.. php:function:: redirect( string $uri )
 
 	:param  string  $uri: The URI to redirect the user to.
-	:param  mixed   $params: one or more additional parameters that can be used with the :meth:`RouteCollection::reverseRoute` method.
 
-	Convenience method that works with the current global ``$request`` and
-	``$router`` instances to redirect using named/reverse-routed routes
-	to determine the URL to go to. If nothing is found, will treat
-	as a traditional redirect and pass the string in, letting
-	``$response->redirect()`` determine the correct method and code.
+	Returns a RedirectResponse instance allowing you to easily create redirects::
 
-	If more control is needed, you must use ``$response->redirect()`` explicitly.
+		// Go back to the previous page
+		return redirect()->back();
 
-.. php:function:: redirect_with_input( $uri[, ...$params] )
+		// Go to specific UI
+		return redirect()->to('/admin');
 
-	:param string $uri: The URI to redirect the user to.
-	:param mixed  $params: one or more additional parameters that can be used with the :meth:`RouteCollection::reverseRoute` method.
+		// Go to a named/reverse-routed URI
+		return redirect()->route('named_route');
 
-	Identical to the ``redirect()`` method, except this flashes the request's $_GET and $_POST values to the session.
-	On the next page request, the form helper ``set_*`` methods will check for data within the old input first, then,
-	if it's not found, the current GET/POST will be checked.
+		// Keep the old input values upon redirect so they can be used by the `old()` function
+		return redirect()->back()->withInput();
 
-	.. note:: In order to retrieve the old, the session MUST be started prior to calling the function.
+		// Set a flash message
+		return redirect()->back()->with('foo', 'message');
 
-.. php:function:: remove_invisible_characters($str[, $url_encoded = TRUE])
+		// Copies all cookies from global response instance
+		return redirect()->back()->withCookies();
+
+		// Copies all headers from the global response instance
+		return redirect()->back()->withHeaders();
+
+	When passing a URI into the function, it is treated as a reverse-route request, not a relative/full URI,
+	treating it the same as using redirect()->route()::
+
+		// Go to a named/reverse-routed URI
+		return redirect('named_route');
+
+.. php:function:: remove_invisible_characters($str[, $urlEncoded = TRUE])
 
 	:param	string	$str: Input string
-	:param	bool	$url_encoded: Whether to remove URL-encoded characters as well
+	:param	bool	$urlEncoded: Whether to remove URL-encoded characters as well
 	:returns:	Sanitized string
 	:rtype:	string
 
@@ -237,10 +331,10 @@ Miscellaneous Functions
 	:param   string   $method: The named route alias, or name of the controller/method to match.
 	:param   mixed   $params: One or more parameters to be passed to be matched in the route.
 
-	Generates a relative URI for you based on either a named route alias, or a controller::method
-	combination. Will take parameters into effect, if provided.
+	Generates a URI relative to the domain name (not **baseUrl**) for you based on either a named route alias,
+	or a controller::method combination. Will take parameters into effect, if provided.
 
-	For full details, see the :doc:`routing` page.
+	For full details, see the :doc:`/incoming/routing` page.
 
 .. php:function:: service ( $name [, ...$params] )
 
@@ -269,6 +363,14 @@ Miscellaneous Functions
 	function will return a new instance of the class, where **service** returns the same
 	instance every time.
 
+.. php:function:: slash_item ( $item )
+
+    :param string $item: Config item name
+    :returns: The configuration item or NULL if the item doesn't exist
+    :rtype:  string|null
+
+    Fetch a config file item with slash appended (if not empty)
+
 .. php:function:: stringify_attributes ( $attributes [, $js] )
 
 	:param   mixed    $attributes: string, array of key value pairs, or object
@@ -277,7 +379,6 @@ Miscellaneous Functions
 	:rtype: string
 
 	Helper function used to convert a string, array, or object of attributes to a string.
-
 
 ================
 Global Constants
@@ -288,15 +389,15 @@ The following constants are always available anywhere within your application.
 Core Constants
 ==============
 
-.. php:const:: ROOTPATH
-
-	The path to the main application directory. Just above ``public``.
-
 .. php:const:: APPPATH
 
-	The path to the **application** directory.
+	The path to the **app** directory.
 
-.. php:const:: BASEPATH
+.. php:const:: ROOTPATH
+
+	The path to the project root directory. Just above ``APPPATH``.
+
+.. php:const:: SYSTEMPATH
 
 	The path to the **system** directory.
 
@@ -304,14 +405,9 @@ Core Constants
 
 	The path to the directory that holds the front controller.
 
-.. php:const:: SELF
-
-	The path to the front controller, **index.php**.
-
 .. php:const:: WRITEPATH
 
 	The path to the **writable** directory.
-
 
 Time Constants
 ==============
@@ -343,3 +439,7 @@ Time Constants
 .. php:const:: YEAR
 
 	Equals 31536000.
+
+.. php:const:: DECADE
+
+	Equals 315360000.
