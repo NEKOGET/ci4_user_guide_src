@@ -2,12 +2,11 @@
 Build Your First Application
 ############################
 
-Overview
-********
+概要
 
-This tutorial is intended to introduce you to the CodeIgniter4 framework
-and the basic principles of MVC architecture. It will show you how a
-basic CodeIgniter application is constructed in a step-by-step fashion.
+このチュートリアルでは、CodeIgniter4 フレームワークを紹介します。
+MVC アーキテクチャの基本原則を説明します。基本的なCodeIgniterアプリケーションは段階的にされているように
+見えるでしょう。
 
 If you are not familiar with PHP, we recommend that you check out
 the `W3Schools PHP Tutorial <https://www.w3schools.com/php/default.asp>`_ before continuing.
