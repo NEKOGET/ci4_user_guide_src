@@ -4,7 +4,7 @@
 このデータはCodeIgniter４ ユーザガイドの翻訳レポジトリです。
 [CodeIgniter4](https://github.com/bcit-ci/CodeIgniter4) からユーザーガイドのみを抽出したものを利用し、翻訳をしています。
 現在の翻訳されたユーザーガイドは 
-http://pneskin2.nekoget.com/codeigniter/4/user_guide/
+http://pneskin2.nekoget.com/codeigniter/4/build/html/
 でHTML版を見ることができます。
 
 ## ユーザーガイドのライセンスについて
