@@ -1,5 +1,5 @@
 ############################
-Build Your First Application
+はじめてのアプリケーションを作ろう
 ############################
 
 概要
@@ -10,7 +10,7 @@ MVC アーキテクチャの基本原則を説明します。基本的なCodeIgn
 見えるでしょう。
 
 もしPHPに慣れていない場合は、
-`W3Schools PHP Tutorial <https://www.w3schools.com/php/default.asp>` を先に挑戦して見ましょう。
+`W3Schools PHP Tutorial <https://www.w3schools.com/php/default.asp>`_ を先に挑戦して見ましょう。
 
 このチュートリアルでは **基本的なニュースアプリ**を作って見ましょう。まず、
 静的ページを表示するコードを書いて見ましょう。次に、
