@@ -34,12 +34,12 @@ MVC アーキテクチャの基本原則を説明します。基本的なCodeIgn
    Controllers(コントローラー), Views(ビュー) と Routing(ルーティング）です。
 -  :doc:`ニュースセクション <news_section>`, ではModelを使い始めます。
    そして、基本的なデータベース操作を行います。
--  :doc:`Create news items <create_news_items>`, which will introduce
-   more advanced database operations and form validation.
--  :doc:`Conclusion <conclusion>`, which will give you some pointers on
-   further reading and other resources.
+-  :doc:`ニュース記事 <create_news_items>`の作成を説明します。
+   データベース操作と、フォームから送信される値の検証を行います。
+-  :doc:`結果 <conclusion>`、
+   さらに他のリソースを読む場合の指針を与えるものとなるでしょう。、
 
-Enjoy your exploration of the CodeIgniter framework.
+CodeIgniterフレームワークの追究をお楽しみください。
 
 .. toctree::
 	:hidden:
