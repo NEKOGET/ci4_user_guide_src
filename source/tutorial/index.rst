@@ -2,44 +2,44 @@
 Build Your First Application
 ############################
 
-Overview
+概要
 ********
 
-This tutorial is intended to introduce you to the CodeIgniter4 framework
-and the basic principles of MVC architecture. It will show you how a
-basic CodeIgniter application is constructed in a step-by-step fashion.
+このチュートリアルでは、CodeIgniter4 フレームワークを紹介します。
+MVC アーキテクチャの基本原則を説明します。基本的なCodeIgniterアプリケーションは段階的にされているように
+見えるでしょう。
 
-If you are not familiar with PHP, we recommend that you check out
-the `W3Schools PHP Tutorial <https://www.w3schools.com/php/default.asp>`_ before continuing.
+もしPHPに慣れていない場合は、
+`W3Schools PHP Tutorial <https://www.w3schools.com/php/default.asp>` を先に挑戦して見ましょう。
 
-In this tutorial, you will be creating a **basic news application**. You
-will begin by writing the code that can load static pages. Next, you
-will create a news section that reads news items from a database.
-Finally, you'll add a form to create news items in the database.
+このチュートリアルでは **基本的なニュースアプリ**を作って見ましょう。まず、
+静的ページを表示するコードを書いて見ましょう。次に、
+データベースからニュース項目を読み取る部分を作ります。
+最後に、フォームからデータベースにニュースを作成する部分を作ります。
 
-This tutorial will primarily focus on:
+このチュートリアルは主に次のことを目的としています。
 
--  Model-View-Controller basics
--  Routing basics
--  Form validation
--  Performing basic database queries using CodeIgniter's "Query Builder"
+-  Model-View-Controller の基本
+-  Routing の基本
+-  Form validation フォームバリデーション
+-  CodeIgniterの "Query Builder"を利用した基本的なクエリの実行
 
-The entire tutorial is split up over several pages, each explaining a
-small part of the functionality of the CodeIgniter framework. You'll go
-through the following pages:
+このチュートリアルは複数のページに分かれていて、
+それぞれのページでCodeIgniterフレームワークの機能の一部を説明しています。では、
+次のページに進みます:
 
--  Introduction, this page, which gives you an overview of what to
-   expect and gets your default application downloaded and running.
--  :doc:`Static pages <static_pages>`, which will teach you the basics
-   of controllers, views and routing.
--  :doc:`News section <news_section>`, where you'll start using models
-   and will be doing some basic database operations.
--  :doc:`Create news items <create_news_items>`, which will introduce
-   more advanced database operations and form validation.
--  :doc:`Conclusion <conclusion>`, which will give you some pointers on
-   further reading and other resources.
+-  はじめに、このページでは何をするべきかの概要を説明します。
+   まず、デェフォルトのアプリケーションを取得します。
+-  :doc:`静的ページ <static_pages>`, の基本を学びます
+   Controllers(コントローラー), Views(ビュー) と Routing(ルーティング）です。
+-  :doc:`ニュースセクション <news_section>`, ではModelを使い始めます。
+   そして、基本的なデータベース操作を行います。
+-  :doc:`ニュース記事 <create_news_items>`の作成を説明します。
+   データベース操作と、フォームから送信される値の検証を行います。
+-  :doc:`結果 <conclusion>`、
+   さらに他のリソースを読む場合の指針を与えるものとなるでしょう。、
 
-Enjoy your exploration of the CodeIgniter framework.
+CodeIgniterフレームワークの追究をお楽しみください。
 
 .. toctree::
 	:hidden:
