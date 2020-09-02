@@ -12,7 +12,7 @@ MVC アーキテクチャの基本原則を説明します。基本的なCodeIgn
 もしPHPに慣れていない場合は、
 `W3Schools PHP Tutorial <https://www.w3schools.com/php/default.asp>`_ を先に挑戦して見ましょう。
 
-このチュートリアルでは **基本的なニュースアプリ**を作って見ましょう。まず、
+このチュートリアルでは **基本的なニュースアプリ** を作って見ましょう。まず、
 静的ページを表示するコードを書いて見ましょう。次に、
 データベースからニュース項目を読み取る部分を作ります。
 最後に、フォームからデータベースにニュースを作成する部分を作ります。
@@ -50,83 +50,83 @@ CodeIgniterフレームワークの追究をお楽しみください。
 	create_news_items
 	conclusion
 
-Getting Up and Running
+起動と実行
 **********************
 
-You can download a release manually from the site, but for this tutorial we will
-use the recommended way and install the AppStarter package through Composer.
-From your command line type the following:
+サイトから手動でリリースされたものをダウンロードできますが、
+このチュートリアルでは、推奨する方法として、composerを使ってパッケージインストールする方法ですすめていきます。
+コマンドラインから次のように入力します:
 
 ::
 
     composer create-project codeigniter4/appstarter ci-news
 
-This creates a new folder, ci-news, which contains your application code, with
-CodeIgniter installed in the vendor folder.
+ci-newsフォルダが作られます。
+CodeIgniter はその中の vendor フォルダにインストールされます。
 
-By default, CodeIgniter starts up in production mode. This is a safety feature
-to keep your site a bit more secure in case settings are messed up once it is live.
-So first let's fix that. Copy or rename the ``env`` file to ``.env``. Open it up.
+デェフォルトでは CodeIgniter は production mode (プロダクションモード)で起動しますこれは設定がめちゃくちゃになった場合に
+サイトをより安全に保つための安全機能です。
+なので、まずはそれを最初に修正します。.  ``env`` ファイルをコピーする、もしくは ``.env`` に名前を変更します。 それを開きます。
 
-This file contains server-specific settings. This means you never will need to
-commit any sensitive information to your version control system. It includes
-some of the most common ones you want to enter already, though they are all commented
-out. So uncomment the line with CI_ENVIRONMENT on it, and change ``production`` to
-``development``::
+このファイルにはサーバ固有の設定が含まれています。このファイルは、バージョン管理システムにコミットする必要はありません。
+機密情報をコミットする必要はないのです。これらはすべて
+コメントアウトされていますが、入力したい一般的なものが
+含まれています。そのため、 CI_ENVIRONMENT が含まれている行のコメントを外して、 ``production`` を
+``development`` に変更します。::
 
     CI_ENVIRONMENT = development
 
-With that out of the way it's time to view your application in a browser. You can
-serve it through any server of your choice, Apache, Nginx, etc, but CodeIgniter
-comes with a simple command that takes advantage of PHP's built-in server to get
-you up and running fast on your development machines. Type the following on the
-command line from the root of your project::
+以上で、アプリケーションをブラウザで表示できるようになりました。ApacheやNginxなど
+任意のサーバーを介してサービスを提供することができますが、CodeIgniterには
+PHPの組み込みサーバを利用して開発マシンですばやく起動して実行できる
+コマンドが付属しています。プロジェクトのルールから
+コマンドラインに次のように入力します::
 
     php spark serve
 
 
-The Welcome Page
+ウェルカムページ
 ****************
 
-Now point your browser to the correct URL you will be greeted by a welcome screen.
-Try it now by heading to the following URL:
+ブラウザに正しiURLを指定すると、ウェルカム画面が表示されます。
+次のURLにアクセスして、試して見ましょう。:
 
 ::
 
     http://localhost:8080
 
-and you should be greeted by the following page:
+そして、次のようなページを見ることができるはずです。:
 
 .. image:: ../images/welcome.png
 
-This means that your application works and you can start making changes to it.
+アプリケーションが正常に機能しました。変更を開始できる状態となりました。
 
-Debugging
+デバッグ
 *********
 
-Now that you're in development mode, you'll see a toolbar on the bottom of your application.
-This toolbar contains a number of helpful items that you can reference during development.
-This will never show in production environments. Clicking any of the tabs along the bottom
-brings up additional information. Clicking the X on the right of the toolbar minimizes it
-to a small square with the CodeIgniter flame on it. If you click that the toolbar
-will show again.
+開発モードになっているので、アプリケーション下部にツールバーが表示されます。
+このツールバーには、開発中に参照できるお役立ちアイテムが含まれています。
+これは本番環境では表示されません。下部にあるタブをクリックすると
+追加情報が表示されます。ツールバー右側にあるXをクリックすると、
+CodeIgniterフレームがついた小さな正方形に最小化されます。これをクリックすると
+ツールバーが再び表示されます。
 
-In addition to this, CodeIgniter has some helpful error pages when you hit exceptions or
-other errors in your program. Open up ``app/Controllers/Home.php`` and change some line
-to generate an error (removing a semi-colon or brace should do the trick!). You will be
-greeted by a screen looking something like this:
+これに加え、CodeIgniterにはプログラムで例外またはその他の
+エラーが発生した時のためにエラーページがいくつか準備されています。``app/Controllers/Home.php`` を開き、
+いくつかの行を変更してエラーを生成します（セミコロンもしくは中括弧を削除すると良いでしょう）次のような画面が
+表示されます。
 
 .. image:: ../images/error.png
 
-There are a couple of things to note here:
+ここで注意するべき点がいくつかあります:
 
-1. Hovering over the red header at the top reveals a ``search`` link that will open up
-   Google.com in a new tab and searching for the exception.
-2. Clicking the ``arguments`` link on any line in the Backtrace will expand a list of
-   the arguments that were passed into that function call.
+1. 上部の赤いヘッダーにカーソルを合わせると開く、  ``search``  リンクが表示されます。 
+   Google.com を新しいタブで開き、例外を検索します。.
+2. バックトレースの任意の行の ``引数``  のリンクをクリックするとリストが展開されます。
+   その関数呼び出しに渡された引数です。
 
-Everything else should be clear when you see it.
+それを見ると、他のすべてがはっきりとしてくるはずです。
 
 
-Now that we know how to get started and how to debug a little, let's get started building this
-small news application.
+開始方法と、デバッグする方法がわかったので、
+この小さなニュースアプリの作成を開始しましょう。
