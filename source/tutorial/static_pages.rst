@@ -1,37 +1,37 @@
-Static pages
+静的ページ
 ###############################################################################
 
-**Note:** This tutorial assumes you've downloaded CodeIgniter and
-:doc:`installed the framework <../installation/index>` in your
-development environment.
+**注:** このチュートリアルは、CodeIgniterをダウンロードし、開発環境に 
+:doc:`フレームワークがインストール済み <../installation/index>`   iであることを
+前提としています。
 
-The first thing you're going to do is set up a **controller** to handle
-static pages. A controller is simply a class that helps delegate work.
-It is the glue of your web application.
+まずは静的ページを処理するように  **controller**  
+を設定します。controller は単に役割を委任するだけのクラスです。
+これはあなたのWebアプリケーションの接着剤の役割を果たします。
 
-For example, when a call is made to:
+例えば次の呼び出しが行われたとします:
 
 ::
 
     http://example.com/news/latest/10
 
-We might imagine that there is a controller named "news". The method
-being called on news would be "latest". The news method's job could be to
-grab 10 news items, and render them on the page. Very often in MVC,
-you'll see URL patterns that match:
+"news" という名前のコントローラーがあると想像してください。latestというメソッドが
+呼び出されます。ニュースメソッドの仕事は10個のアイテムを取得して
+ページに表示をすることです。MVCでは多くの場合
+一致するURLパターンで表示されます:
 
 ::
 
     http://example.com/[controller-class]/[controller-method]/[arguments]
 
-As URL schemes become more complex, this may change. But for now, this
-is all we will need to know.
+URLスキームがより複雑になると、これは変更される可能性があります。しかし、今のところ
+私たちがするべきものの全てです。
 
-Let's make our first controller
+はじめてのコントローラーを作ろう
 -------------------------------------------------------
 
-Create a file at **app/Controllers/Pages.php** with the following
-code.
+ **app/Controllers/Pages.php** 
+にファイルを作成し、次のコードを書いてみましょう。
 
 ::
 
@@ -51,13 +51,13 @@ code.
         }
     }
 
-You have created a class named ``Pages``, with a ``view()`` method that accepts
-one argument named ``$page``. It also has an ``index()`` method, the same
-as the default controller found in **app/Controllers/Home.php**; that method
-displays the CodeIgniter welcome page.
+``view()`` メソッドに 引数 ``$page`` を受け入れたものを作成し、
+``Pages`` という名前のクラスを作成しました。**app/Controllers/Home.php** にあるデェフォルトのコントローラーと同じ 
+``index()`` メソッドもあります。
+このメソッドは、CodeIgniterのウェルカムページを表示します。
 
-The ``Pages`` class is extending the
-``CodeIgniter\Controller`` class. This means that the new Pages class can access the
+``Pages`` クラスは
+``CodeIgniter\Controller`` クラスを継承しています。 This means that the new Pages class can access the
 methods and variables defined in the ``CodeIgniter\Controller`` class
 (*system/Controller.php*).
 
@@ -125,7 +125,7 @@ in the ``Pages`` controller created above:
 
     public function view($page = 'home')
     {
-        if ( ! is_file(APPPATH.'/Views/pages/'.$page.'.php'))
+        if ( !is_file(APPPATH.'/Views/pages/'.$page.'.php'))
         {
             // Whoops, we don't have a page for that!
             throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
