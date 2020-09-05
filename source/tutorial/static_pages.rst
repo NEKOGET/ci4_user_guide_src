@@ -244,21 +244,21 @@ CodeIgniterのウェルカムページが表示されます。
     $routes->get('(:any)', 'Pages::view/$1');
 
 CodeIgniterはルーティングルールを上から下に順に読み取り、
-リクエストを最初に一致したルールに割り当てます。Each rule is a regular expression
-(left-side) mapped to a controller and method name separated by slashes
-(right-side). When a request comes in, CodeIgniter looks for the first
-match, and calls the appropriate controller and method, possibly with
-arguments.
+リクエストを最初に一致したルールに割り当てます。各ルールは / で区切られたコントローラー(左側) と
+メソッド名 (右側)にマッピングされた
+正規表現です。リクエストが届くと、CodeIgniterは最初の一致を探して、
+適切なコントローラーとメソッドを、おそらくですが引数を指定して
+呼び出します。
 
-More information about routing can be found in the URI Routing
-:doc:`documentation </incoming/routing>`.
+ルーティングの詳細については、
+:doc:`ドキュメント </incoming/routing>` を参照してください。
 
-Here, the second rule in the ``$routes`` array matches **any** request
-using the wildcard string ``(:any)``. and passes the parameter to the
-``view()`` method of the ``Pages`` class.
+``$routes``  配列の2番目のルールは　ワイルドカード文字列 ``(:any)`` を利用した   
+**any**  リクエストと一致します。パラメータを 
+``Pages`` クラスの ``view()`` メソッドに渡します。 
 
-Now visit ``localhost:8080/home``. Did it get routed correctly to the ``view()``
-method in the pages controller? Awesome!
+次に  ``localhost:8080/home`` へアクセスしてください。Pagesコントローラーの ``view()`` メソッドに
+正しくルーティングされましたか？ Awesome!
 
 次のような内容が表示されます。:
 
