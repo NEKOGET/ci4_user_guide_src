@@ -15,8 +15,8 @@ CodeIgniterのインストールでは、 :doc:`サーバー要件</intro/requir
 また、データベースコマンド 
 を発行するための適切なクライアントがあることも前提としています。 (mysql, MySQL Workbench, or phpMyAdmin)
 
-You need to create a database that can be used for this tutorial,
-and then configure CodeIgniter to use it.
+このチュートリアルで使用するデータベースを作成する必要があります。
+そして、それを使用するようにCodeIgniterを構成します。
 
 Using your database client, connect to your database and run the SQL command below (MySQL).
 Also, add some seed records. For now, we'll just show you the SQL statements needed
