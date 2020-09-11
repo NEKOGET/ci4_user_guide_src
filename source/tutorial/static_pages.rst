@@ -125,7 +125,7 @@ URLスキームがより複雑になると、これは変更される可能性�
 
     public function view($page = 'home')
     {
-        if ( !is_file(APPPATH.'/Views/pages/'.$page.'.php'))
+        if ( ! is_file(APPPATH.'/Views/pages/'.$page.'.php'))
         {
             // Whoops, we don't have a page for that!
             throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
