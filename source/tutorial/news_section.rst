@@ -1,19 +1,19 @@
-News section
+ニュースセクション
 ###############################################################################
 
-In the last section, we went over some basic concepts of the framework
-by writing a class that references static pages. We cleaned up the URI by
-adding custom routing rules. Now it's time to introduce dynamic content
-and start using a database.
+前のセクションでは、静的ページを参照するクラスを作成し、
+フレームワークの基本的な概念を説明しました。カスタムルーティングルールを追加して
+URLをきれいにしました。次は動的なコンテンツを追加します。
+そして、データベースの使用を開始します。
 
-Create a database to work with
+使用するデータベースの作成
 -------------------------------------------------------
 
-The CodeIgniter installation assumes that you have set up an appropriate
-database, as outlined in the :doc:`requirements </intro/requirements>`.
-In this tutorial, we provide SQL code for a MySQL database, and
-we also assume that you have a suitable client for issuing database
-commands (mysql, MySQL Workbench, or phpMyAdmin).
+CodeIgniterのインストールでは、 :doc:`サーバー要件</intro/requirements>`.
+で示されているように、適切なデータベースが存在していることを想定しています。
+このチュートリアルでは、MySQLのSQLコードを提供します。
+また、データベースコマンド 
+を発行するための適切なクライアントがあることも前提としています。 (mysql, MySQL Workbench, or phpMyAdmin)
 
 You need to create a database that can be used for this tutorial,
 and then configure CodeIgniter to use it.
@@ -224,7 +224,7 @@ and add the next piece of code.
 .. note:: We are again using using **esc()** to help prevent XSS attacks.
     But this time we also passed "url" as a second parameter. That's because
     attack patterns are different depending on the context in which the output
-    is used. You can read more about it :doc:`here </general/common_functions>`.
+    is used. これについては、 :doc:`こちら </general/common_functions>` で詳細を確認することができます。
 
 Here, each news item is looped and displayed to the user. You can see we
 wrote our template in PHP mixed with HTML. If you prefer to use a template
@@ -267,7 +267,7 @@ The only thing left to do is create the corresponding view at
     <h2><?= esc($news['title']); ?></h2>
     <?= esc($news['body']); ?>
 
-Routing
+ルーティング
 -------------------------------------------------------
 
 Because of the wildcard routing rule created earlier, you need an extra
