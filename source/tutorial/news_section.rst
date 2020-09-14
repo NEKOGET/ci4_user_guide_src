@@ -18,11 +18,11 @@ CodeIgniterのインストールでは、 :doc:`サーバー要件</intro/requir
 このチュートリアルで使用するデータベースを作成する必要があります。
 そして、それを使用するようにCodeIgniterを構成します。
 
-Using your database client, connect to your database and run the SQL command below (MySQL).
-Also, add some seed records. For now, we'll just show you the SQL statements needed
-to create the table, but you should be aware that this can be done programmatically
-once you are more familiar with CodeIgniter; you can read about :doc:`Migrations <../dbmgmt/migration>`
-and :doc:`Seeds <../dbmgmt/seeds>` to create more useful database setups later.
+データベースクライアントを使用して、データベースに接続し次のSQLコマンドを実行します。(MySQL).
+またいくつかのレコードを追加します。ここではテーブル作成に必要なSQLステートメントのみを示します。
+CodeIgniterになれれば、プログラムでこれを実行可能なことに注意をしてください。詳しくは、
+:doc:`Migrations <../dbmgmt/migration>` と
+:doc:`Seeds <../dbmgmt/seeds>`  を参照してください。より便利にデーターベースを設定作成できます。
 
 ::
 
@@ -35,10 +35,10 @@ and :doc:`Seeds <../dbmgmt/seeds>` to create more useful database setups later.
         KEY slug (slug)
     );
 
-A note of interest: a "slug", in the context of web publishing, is a
-user- and SEO-friendly short text used in a URL to identify and describe a resource.
+注意: Web公開のコンテキストにおける  "slug" はリソースを識別および説明するためにURLで使用される
+ユーザーおよびSEOフレンドリーな短いテキストです。
 
-The seed records might be something like:
+シードレコードは次のようになります:
 
 ::
 
@@ -47,13 +47,13 @@ The seed records might be something like:
     (2,'Say it isn\'t so!','say-it-isnt-so','Scientists conclude that some programmers have a sense of humor.'),
     (3,'Caffeination, Yes!','caffeination-yes','World\'s largest coffee shop open onsite nested coffee shop for staff only.');
 
-Connect to your database
+データベースへ接続
 -------------------------------------------------------
 
-The local configuration file, ``.env``, that you created when you installed
-CodeIgniter, should have the database property settings uncommented and
-set appropriately for the database you want to use. Make sure you've configured
-your database properly as described :doc:`here <../database/configuration>`.
+CodeIgniterをインストールをした時に作成したローカル設定ファイル  ``.env`` に
+データベースプロバティの設定をコメント解除し、使用するデータベースにあわせて
+適切に設定をする必要があります。:doc:`こちら <../database/configuration>` の説明に従って、
+データベースの構成が適切であることを確認してください。
 
 ::
 
@@ -63,17 +63,17 @@ your database properly as described :doc:`here <../database/configuration>`.
     database.default.password = root
     database.default.DBDriver = MySQLi
 
-Setting up your model
+モデルのセットアップ
 -------------------------------------------------------
 
-Instead of writing database operations right in the controller, queries
-should be placed in a model, so they can easily be reused later. Models
-are the place where you retrieve, insert, and update information in your
-database or other data stores. They provide access to your data.
-You can read more about it :doc:`here </models/model>`.
+コントローラでデータベース操作を記述するのではなく、
+クエリをモデルに配置して、再利用できるようにします。モデルは
+データベースもしくは他のデータストアの情報を取得、挿入および
+更新する場所です。データベースへのアクセスを提供します。
+さらに詳しく知りたい場合は、 :doc:`こちら </models/model>` を読むと良いでしょう。
 
-Open up the **app/Models/** directory and create a new file called
-**NewsModel.php** and add the following code.
+**app/Models/** ディレクトリを開き、**NewsModel.php**
+ファイルを作成しましょう。そして次のコードを追加します。
 
 ::
 
@@ -86,10 +86,10 @@ Open up the **app/Models/** directory and create a new file called
         protected $table = 'news';
     }
 
-This code looks similar to the controller code that was used earlier. It
-creates a new model by extending ``CodeIgniter\Model`` and loads the database
-library. This will make the database class available through the
-``$this->db`` object.
+このコードは以前に使用した以前に使用したコントローラのコードに似ています。``CodeIgniter\Model``  をextendして新しいモデルを作成し、
+データベースライブラリを
+ロードします。これはデータベースクラスを ``$this->db``  
+オブジェクトを通じて利用可能にするものです。
 
 Now that the database and a model have been set up, you'll need a method
 to get all of our posts from our database. To do this, the database
