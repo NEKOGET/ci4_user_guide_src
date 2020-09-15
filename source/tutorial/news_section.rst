@@ -91,15 +91,15 @@ CodeIgniterをインストールをした時に作成したローカル設定フ
 ロードします。これはデータベースクラスを ``$this->db``  
 オブジェクトを通じて利用可能にするものです。
 
-Now that the database and a model have been set up, you'll need a method
-to get all of our posts from our database. To do this, the database
-abstraction layer that is included with CodeIgniter —
-:doc:`Query Builder <../database/query_builder>` — is used. This makes it
-possible to write your 'queries' once and make them work on :doc:`all
-supported database systems <../intro/requirements>`. The Model class
-also allows you to easily work with the Query Builder and provides
-some additional tools to make working with data simpler. Add the
-following code to your model.
+データベースとモデルの設定ができたので、
+次はデータベースから全ての投稿を取得するメソッドを用意します。これを行うには、
+CodeIgniterで用意されている、データベース抽象化レイヤー 
+:doc:`クエリビルダー <../database/query_builder>` を使用します。これにより、 'クエリ'を記述することで 
+:doc:`サポートされているデータベースシステム  <../intro/requirements>`
+で機能させることができるようになります。モデルクラスは
+クエリビルダーを簡単に操作できます。
+そしてデータをより簡単に操作するためのツールが用意されています。次のコードを
+モデルに追加します。
 
 ::
 
@@ -115,26 +115,26 @@ following code to your model.
                     ->first();
     }
 
-With this code, you can perform two different queries. You can get all
-news records, or get a news item by its `slug <#>`_. You might have
-noticed that the ``$slug`` variable wasn't sanitized before running the
-query; :doc:`Query Builder <../database/query_builder>` does this for you.
+このコードを利用すると、2つの異なる食えるを実行することができます。すべてのニュースレコードを取得するか、
+`slug <#>`_ でニュースアイテムを取得できます。クエリを実行する前に、
+``$slug`` 変数がサニタイズされていないことに気がついたかもしれません。
+:doc:`クエリビルダー <../database/query_builder>`  がこれを行います。
 
-The two methods used here, ``findAll()`` and ``first()``, are provided
-by the Model class. They already know the table to use based on the ``$table``
-property we set in **NewsModel** class, earlier. They are helper methods
-that use the Query Builder to run their commands on the current table, and
-returning an array of results in the format of your choice. In this example,
-``findAll()`` returns an array of objects.
+ここで使用される2つのメソッド、 ``findAll()`` と ``first()`` は
+モデルクラスによって提供されます。**NewsModel** クラスの``$table`` プロパティによって、使用するテーブルを
+すでに知っています。これらは、クエリビルダーを利用して
+現在のテーブルに対してコマンドを実行し、
+選択した形式で結果の配列を返す補助メソッドです。この例の
+``findAll()``  オブジェクトの配列を返します。
 
-Display the news
+ニュースを表示する
 -------------------------------------------------------
 
-Now that the queries are written, the model should be tied to the views
-that are going to display the news items to the user. This could be done
-in our ``Pages`` controller created earlier, but for the sake of clarity,
-a new ``News`` controller is defined. Create the new controller at
-**app/Controllers/News.php**.
+クエリの記述ができたので、モデルはユーザーにニュースアイテムを表示する
+ビューに関連付けができるはずです。これは以前に作成した 
+``Pages`` コントローラーで行うこともできますが、
+鋭角にするために、新しく ``News``  コントローラを作成します。**app/Controllers/News.php** 
+ファイルを作成します。
 
 ::
 
@@ -160,20 +160,20 @@ a new ``News`` controller is defined. Create the new controller at
         }
     }
 
-Looking at the code, you may see some similarity with the files we
-created earlier. First, it extends a core CodeIgniter class, ``Controller``,
-which provides a couple of helper methods, and makes sure that you have
-access to the current ``Request`` and ``Response`` objects, as well as the
-``Logger`` class, for saving information to disk.
+コードを見ると、先ほど作成したファイルと
+いくつかの類似点があることがわかります。まずコアのCodeIgniterのクラス  ``Controller`` クラスをextendします。
+現在の ``Request`` と  ``Response`` オブジェクトだけではなく
+これはいくつかのヘルパーメソッドを提供し、
+情報をディスクに保存するために ``Logger`` クラスを提供します。
 
-Next, there are two methods, one to view all news items, and one for a specific
-news item. You can see that the ``$slug`` variable is passed to the model's
-method in the second method. The model is using this slug to identify the
-news item to be returned.
+次に2つの方法があります。１つはすべてのニュース項目を表示する方法、
+もう一つは特定のニュース項目を表示する方法です。2番目のメソッドで ``$slug``  変数がモデルのメソッドに
+渡されていることがわかります。モデルはこの slug を利用して、
+返されるニュース項目を識別しています。
 
-Now the data is retrieved by the controller through our model, but
-nothing is displayed yet. The next thing to do is, passing this data to
-the views. Modify the ``index()`` method to look like this::
+これでデータはコントローラを通じてモデルを介し、取得されますが、
+まだ何も表示されません。次に、
+このデータをビューに渡します。 ``index()`` メソッドを次のように変更します ::
 
     public function index()
     {
@@ -189,11 +189,11 @@ the views. Modify the ``index()`` method to look like this::
         echo view('templates/footer', $data);
     }
 
-The code above gets all news records from the model and assigns it to a
-variable. The value for the title is also assigned to the ``$data['title']``
-element and all data is passed to the views. You now need to create a
-view to render the news items. Create **app/Views/news/overview.php**
-and add the next piece of code.
+上記のコードは、モデルからすべてのニュースレコードを取得し、
+それを変数に割り当てます。タイトルの値は、  ``$data['title']`` 要素にも割り当てられ、
+すべてのデータがビューに渡されます。次にニュース項目をレンダリングするためのビューを
+作成する必要があります。**app/Views/news/overview.php** を作成し、
+次のコードを追加します。
 
 ::
 
@@ -221,21 +221,21 @@ and add the next piece of code.
     <?php endif ?>
 
 
-.. note:: We are again using using **esc()** to help prevent XSS attacks.
-    But this time we also passed "url" as a second parameter. That's because
-    attack patterns are different depending on the context in which the output
-    is used. これについては、 :doc:`こちら </general/common_functions>` で詳細を確認することができます。
+.. 注:: XSS攻撃を防ぐために、**esc()** を使用しています。 
+    しかし今回は2番目のパラメータとして "url"  も渡しています。それは
+    攻撃のパターンは出力が行われるコンテキストによって異なるため、
+    使用されています。これについては、 :doc:`こちら </general/common_functions>` で詳細を確認することができます。
 
-Here, each news item is looped and displayed to the user. You can see we
-wrote our template in PHP mixed with HTML. If you prefer to use a template
-language, you can use CodeIgniter's :doc:`View
-Parser </outgoing/view_parser>` or a third party parser.
+ここでは各ニュース項目がループされ、ユーザーに表示されます。HTMLが混ざったPHPで
+テンプレートを作成したことがわかります。テンプレート言語を使用したい場合、
+CodeIgniterの  :doc:`View
+パーサー </outgoing/view_parser>` もしくはサードパーティ製のパーサーを使用することができます。
 
-The news overview page is now done, but a page to display individual
-news items is still absent. The model created earlier is made in such
-a way that it can easily be used for this functionality. You only need to
-add some code to the controller and create a new view. Go back to the
-``News`` controller and update the ``view()`` method with the following:
+これでニュースの概要ページは完成しましたが、
+ここのニュース項目を表示するページはまだありません。前に作成したモデルは、
+この機能で簡単に使用できるように作成されています。コントローラにコードを追加して
+新しいビューを作成するだけになります。``News`` コントローラに戻り、次のように
+``view()`` メソッドを更新します。:
 
 ::
 
@@ -257,10 +257,10 @@ add some code to the controller and create a new view. Go back to the
         echo view('templates/footer', $data);
     }
 
-Instead of calling the ``getNews()`` method without a parameter, the
-``$slug`` variable is passed, so it will return the specific news item.
-The only thing left to do is create the corresponding view at
-**app/Views/news/view.php**. Put the following code in this file.
+パラメータなしで、 ``getNews()`` メソッドを呼び出す代わりに
+``$slug`` 変数が渡されるので特定のニュース項目を返します。
+あとは対応するビューを
+**app/Views/news/view.php** に作成するだけです。次のコードを、このファイルに挿入します。
 
 ::
 
@@ -270,12 +270,12 @@ The only thing left to do is create the corresponding view at
 ルーティング
 -------------------------------------------------------
 
-Because of the wildcard routing rule created earlier, you need an extra
-route to view the controller that you just made. Modify your routing file
-(**app/Config/Routes.php**) so it looks as follows.
-This makes sure the requests reach the ``News`` controller instead of
-going directly to the ``Pages`` controller. The first line routes URI's
-with a slug to the ``view()`` method in the ``News`` controller.
+以前に作成したワイルドカードルーティングルールのため、
+作成したコントローラを表示するにはルートの追加が必要です。ルーティングファイル
+(**app/Config/Routes.php**) を次のように変更します。
+このリクエストが ``Pages`` コントローラに直接行くのではなく、
+``News`` コントローラに到達するようにします。最初の行はURIをslug(スラグ)で
+``News`` コントローラの ``view()`` メソッドにルーティングします。
 
 ::
 
@@ -283,9 +283,9 @@ with a slug to the ``view()`` method in the ``News`` controller.
     $routes->get('news', 'News::index');
     $routes->get('(:any)', 'Pages::view/$1');
 
-Point your browser to your "news" page, i.e. ``localhost:8080/news``,
-you should see a list of the news items, each of which has a link
-to display just the one article.
+ブラウザでニュースページ つまり  ``localhost:8080/news`` にアクセスすると、
+ニュースの項目リストが表示されます。
+各ニュース項目には1つの記事を表示するためのリンクがあります。
 
 .. image:: ../images/tutorial2.png
     :align: center
