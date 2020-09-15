@@ -1,4 +1,4 @@
-Create news items
+ニュースアイテムを作成する
 ###############################################################################
 
 You now know how you can read data from a database using CodeIgniter, but
@@ -133,7 +133,7 @@ never need to do that, since it is an auto-incrementing field in the database.
 This helps protect against Mass Assignment Vulnerabilities. If your model is
 handling your timestamps, you would also leave those out.
 
-Routing
+ルーティング
 -------------------------------------------------------
 
 Before you can start adding news items into your CodeIgniter application
