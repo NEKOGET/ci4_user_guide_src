@@ -1,19 +1,19 @@
 ニュースアイテムを作成する
 ###############################################################################
 
-You now know how you can read data from a database using CodeIgniter, but
-you haven't written any information to the database yet. In this section,
-you'll expand your news controller and model created earlier to include
-this functionality.
+CodeIgniterを使用して、データベースからデータを読み取る方法を理解しましたが、
+まだデータベースへの書き込みはしていません。このセクションでは、前に作成した 
+ニュースコントローラとモデルを拡張して
+この機能を追加します。
 
-Create a form
+フォームの作成
 -------------------------------------------------------
 
-To input data into the database, you need to create a form where you can
-input the information to be stored. This means you'll be needing a form
-with two fields, one for the title and one for the text. You'll derive
-the slug from our title in the model. Create a new view at
-**app/Views/news/create.php**.
+データベースにデータを入力するには、
+保存する情報を入力できるフォームを作成する必要があります。つまり、タイトルとテキストの2つのフィールドを持つ
+フォームが必要になります。モデルのタイトルから
+slug(スラグ）を派生させます。新しいビューを
+**app/Views/news/create.php** に作成します。
 
 ::
 
@@ -34,15 +34,15 @@ the slug from our title in the model. Create a new view at
 
     </form>
 
-There are probably only two things here that look unfamiliar. The
-``\Config\Services::validation()->listErrors()`` function is used to report
-errors related to form validation. The ``csrf_field()`` function creates
-a hidden input with a CSRF token that helps protect against some common attacks.
+見慣れないものは、おそらく2つだけです。``\Config\Services::validation()->listErrors()``  関数は
+バリデーションチェックに関連する
+エラーを報告するために使用されます。``csrf_field()`` 関数は、いくつかの一般的な
+攻撃からの保護に役立つ、 CSRF トークンを非表示入力入力タグを生成します。
 
-Go back to your ``News`` controller. You're going to do two things here,
-check whether the form was submitted and whether the submitted data
-passed the validation rules. You'll use the :doc:`form
-validation <../libraries/validation>` library to do this.
+``News`` コントローラーに戻ります。ここでは2つのことを行います。
+フォームが送信されたかどうか、および送信されたデータが
+バリデーションルールを通過したかどうかを確認します。これを行うには、  :doc:`フォーム
+バリデーション<../libraries/validation>`  ライブラリを使用します。
 
 ::
 
@@ -72,35 +72,34 @@ validation <../libraries/validation>` library to do this.
         }
     }
 
-The code above adds a lot of functionality. First we load the NewsModel.
-After that, we check if we deal with the ``POST`` request and then
-the Controller-provided helper function is used to validate
-the $_POST fields. In this case, the title and text fields are required.
+上記のコードでは多くの機能が追加されます。まず、NewsModelをロードします。
+そして、``POST`` リクエストをショルするかどうかを確認し、
+コントローラが提供しているヘルパー関数を使用して、
+ $_POST  フィールドを検証します。この場合、タイトルとテキストのフィールドは必須項目となります。
 
-CodeIgniter has a powerful validation library as demonstrated
-above. You can read :doc:`more about this library
-here <../libraries/validation>`.
+このようにCodeIgniterには強力なバリデーションライブラリが
+存在します。このライブラリの詳細は  :doc:`こちら <../libraries/validation>` を参照してください。
 
-Continuing down, you can see a condition that checks whether the form
-validation ran successfully. If it did not, the form is displayed; if it
-was submitted **and** passed all the rules, the model is called. This
-takes care of passing the news item into the model.
-This contains a new function ``url_title()``. This function -
-provided by the :doc:`URL helper <../helpers/url_helper>` - strips down
-the string you pass it, replacing all spaces by dashes (-) and makes
-sure everything is in lowercase characters. This leaves you with a nice
-slug, perfect for creating URIs.
+続いて、フォームのバリデーションチェックが正常に実行されたかどうか
+が確認します。正常に通過しなかった場合は、フォームが表示されます。
+**送信された項目が、すべてのバリデーションルールに合格する** とモデルが呼び出されます。 これにより
+ニュース項目をモデルに渡すことができました。
+これには新しい関数 ``url_title()`` が含まれています。この関数 -
+:doc:`URL ヘルパー <../helpers/url_helper>` によって提供されます - 
+渡した空白文字列を削除し、
+すべてのスペースをダッシュ (-) で置き換え、すべてが小文字であることを確認します。これにより、URLの作成に最適な素晴らしい
+slugが作成されます。
 
-After this, a view is loaded to display a success message. Create a view at
-**app/Views/news/success.php** and write a success message.
+この後、ビューがロードされ、成功メッセージが表示されます。**app/Views/news/success.php** に
+ビューを作成し、成功メッセージを書き込みます。
 
-This could be as simple as:
+これは次のように簡単です。:
 
 ::
 
-    News item created successfully.
+    ニュースアイテムの作成が成功しました！
 
-Model Updating
+モデルの更新
 -------------------------------------------------------
 
 The only thing that remains is ensuring that your model is set up
