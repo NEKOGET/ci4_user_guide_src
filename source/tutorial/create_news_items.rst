@@ -102,17 +102,17 @@ slugが作成されます。
 モデルの更新
 -------------------------------------------------------
 
-The only thing that remains is ensuring that your model is set up
-to allow data to be saved properly. The ``save()`` method that was
-used will determine whether the information should be inserted
-or if the row already exists and should be updated, based on the presence
-of a primary key. In this case, there is no ``id`` field passed to it,
-so it will insert a new row into it's table, **news**.
+最後に、
+データが適切に保存されるようにモデルが設定されていることを確認します。. ``save()`` メソッドは
+主キーの存在に基づいて
+情報を挿入する必要があるかどうか、
+またすでに存在していて更新する必要があるかどうかを決定します。このケースでは、それに渡されるIDフィールドがないので、
+テーブルに **news** という新しい行を挿入します。
 
-However, by default the insert and update methods in the model will
-not actually save any data because it doesn't know what fields are
-safe to be updated. Edit the model to provide it a list of updatable
-fields in the ``$allowedFields`` property.
+ただし、デフォルトではモデルの挿入および更新メソッドは、
+どのフィールドを更新しても安全かわからないために
+実際にはデータを保存しません。モデルを編集して、 ``$allowedFields``
+プロバティに更新可能な不フィールドのリストを提供します。
 
 ::
 
@@ -126,20 +126,20 @@ fields in the ``$allowedFields`` property.
         protected $allowedFields = ['title', 'slug', 'body'];
     }
 
-This new property now contains the fields that we allow to be saved to the
-database. Notice that we leave out the ``id``? That's because you will almost
-never need to do that, since it is an auto-incrementing field in the database.
-This helps protect against Mass Assignment Vulnerabilities. If your model is
-handling your timestamps, you would also leave those out.
+この新しいプロパティには
+データベースに保存できるフィールドが含まれています。``id`` を省略していることに注意してください。 これはデータベースの自動インクリメントフィールドであるため
+必要ありません。
+これは大量の割り当ての脆弱性から守るために役立ちます。モデルがタイムスタンプを処理している場合は
+それらも除外します。
 
 ルーティング
 -------------------------------------------------------
 
-Before you can start adding news items into your CodeIgniter application
-you have to add an extra rule to **app/Config/Routes.php** file. Make sure your
-file contains the following. This makes sure CodeIgniter sees ``create``
-as a method instead of a news item's slug. You can read more about different
-routing types :doc:`here </incoming/routing>`.
+CodeIgniter アプリケーションにニュースアイテムを追加する前に、 
+**app/Config/Routes.php** にルールを追加する必要があります。ファイルに以下の内容が含まれていることを確認しましょう。
+含まれていることを確認しましょう。これにより CodeIgnierは確実にニュース項目のslugの代わりに、 ``作成``
+``作成``をメソッドとして認識します。その他のルーティングタイプについては
+:doc:`こちら </incoming/routing>` を確認してください。
 
 ::
 
@@ -148,8 +148,8 @@ routing types :doc:`here </incoming/routing>`.
     $routes->get('news', 'News::index');
     $routes->get('(:any)', 'Pages::view/$1');
 
-Now point your browser to your local development environment where you
-installed CodeIgniter and add ``/news/create`` to the URL.
+次にプラウザをローカル開発環境にポイントします。 URLに
+``/news/create`` を入力しましょう、
 Add some news and check out the different pages you made.
 
 .. image:: ../images/tutorial3.png
