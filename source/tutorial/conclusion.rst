@@ -1,22 +1,22 @@
-Conclusion
+最後に
 ###############################################################################
 
-This tutorial did not cover all of the things you might expect of a
-full-fledged content management system, but it introduced you to the
-more important topics of routing, writing controllers, and models. We
-hope this tutorial gave you an insight into some of CodeIgniter's basic
-design patterns, which you can expand upon.
+このチュートリアルでは本格的なコンテンツ管理システムで期待されるすべてのことを
+取り上げたわけではありません。
+ルーティング、コントローラ、モデルの作成といった、重要なトピックを紹介しました。このチュートリアルが
+CodeIgniterの基本的なデザインパターンの理解を深めるものになったなら
+幸いです。
 
-Now that you've completed this tutorial, we recommend you check out the
-rest of the documentation. CodeIgniter is often praised because of its
-comprehensive documentation. Use this to your advantage and read the
-"Overview" and "General Topics" sections thoroughly. You should read
-the class and helper references when needed.
+このチュートリアルを完了したので、
+次は残りのドキュメントを確認しましょう。CodeIgniterはこの包括的なドキュメントがあることについて
+評価されています。"概要" と 
+"一般的なトピック" をぜひよく読んでください。必要に応じて
+クラスとヘルパーのリファレンスを読むと良いでしょう。
 
-Every intermediate PHP programmer should be able to get the hang of
-CodeIgniter within a few days.
+すべての中堅PHPプログラマーは
+数日でCodeIgnietrでの開発のコツを掴むことができます。
 
-If you still have questions about the framework or your own CodeIgniter
-code, you can:
+CodeIgniter独自のコードについて
+まだ質問がある場合は:
 
--  Check out our `forums <http://forum.codeigniter.com/>`_
+- `フォーラム <http://forum.codeigniter.com/>`_ をチェックしてください。
