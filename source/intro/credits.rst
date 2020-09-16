@@ -1,18 +1,18 @@
 #######
-Credits
+クレジット
 #######
 
-CodeIgniter was originally developed by `EllisLab  <https://ellislab.com/>`_.
-The framework was written for performance in the real world,
-with many of the original class libraries, helpers, and
-sub-systems borrowed from the code-base of `ExpressionEngine
-<https://expressionengine.com>`_.
-It was, for years, developed and maintained by EllisLab, the ExpressionEngine
-Development Team and a group of community members called the Reactor Team.
+CodeIgniterは元々、 `EllisLab  <https://ellislab.com/>`_ によって開発されたものです。
+このフレームワークは現実社会でのパフォーマンス向上を目的に作成されました。
+`ExpressionEngine
+<https://expressionengine.com>`_ 
+から多くのオリジナルクラスやライブラリ、ヘルパー、サブシステムの多くが作られました。
+これはReactor Teamと呼ばれた、EllisLab の ExpressionEngine
+開発チームとコミュニティグループのメンバーによって何年も保守されていたものです。.
 
-In 2014, CodeIgniter was acquired by the `British Columbia Institute of Technology
-<https://www.bcit.ca/>`_ and was then officially announced as a community-maintained
-project.
+2014年 CodeIgniter は `ブリティッシュコロンビア工科大学
+<https://www.bcit.ca/>`_ に買収されました。
+そして、コミュニティが維持するプロジェクトとして公式に発表されました。
 
-In 2019, the CodeIgniter Foundation was formed to provide a perpetual managing group
-separate from any other entity to help ensure the framework's future.
+2019年 CodeIgniter Foundationが
+フレームワークの未来を保証するために、他のエンティティとは別に永続的な管理グループとして設立されました。
