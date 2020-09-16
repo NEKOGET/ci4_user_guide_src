@@ -148,9 +148,9 @@ CodeIgniter アプリケーションにニュースアイテムを追加する�
     $routes->get('news', 'News::index');
     $routes->get('(:any)', 'Pages::view/$1');
 
-次にプラウザをローカル開発環境にポイントします。 URLに
+次にプラウザでローカル開発環境を確認します。URLに
 ``/news/create`` を入力しましょう、
-Add some news and check out the different pages you made.
+いくつかのニュースを追加し、作成した別のページでチェックします。
 
 .. image:: ../images/tutorial3.png
     :align: center
@@ -162,14 +162,14 @@ Add some news and check out the different pages you made.
     :height: 415px
     :width: 45%
 
-Congratulations
+完成！！！
 -------------------------------------------------------
 
-You just completed your first CodeIgniter4 application!
+最初のCodeIgniter4アプリケーションが完成しました！
 
-The image underneath shows your project's **app** folder,
-with all of the files that you created in green.
-The two modified configuration files (Database & Routes) are not shown.
+次の画像は **app** フォルダーの中身です。
+作成した全てのファイルが緑色で表示されています。
+変更された2つのファイル（データベースとルート）は表示していません。
 
 .. image:: ../images/tutorial9.png
     :align: left
