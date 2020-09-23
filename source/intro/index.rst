@@ -26,13 +26,13 @@ CodeIgniterは、誰のためにありますか？
 -  小さくて軽快なフレームワークを探しています。
 -  優れた性能が必要です。
 -  ほぼゼロ構成で動くフレームワークが欲しいです。
--  You want a framework that does not require you to use the command
+-  コマンドを使用する必要がないフレームワークが必要です。
    line.
--  You want a framework that does not require you to adhere to
-   restrictive coding rules.
+-  フレームワークの制約的なコーディング規約に
+   従わされることのないものが欲しい
 -  PEARのような大規模なモノリシックライブラリに興味がありません。
--  You do not want to be forced to learn a templating language (although
-   a template parser is optionally available if you desire one).
+-  テンプレート言語の学習はもうしたくありません。 
+   （しかし、使いたい場合は使えるものが嬉しいですね）
 -  複雑さを嫌い、シンプルな解決法が好きです。
 -  はっきりした、完璧なドキュメントが必要です。
 
