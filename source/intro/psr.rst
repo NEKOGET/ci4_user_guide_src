@@ -7,38 +7,38 @@ PSR対応について
 この提案に対し対応をしています。このガイドは
 PSRの草案提案に基準しています。それらは次の通りです。
 
-**PSR-1: B基本コーディング標準**
+**PSR-1: 基本コーディング標準**
 
-この推奨時刻は、基本的なクラス、メソッドおよびファイルの命名基準を対象としています。私たちの
+基本的なクラス、メソッドおよびファイルの命名基準を対象としています。私たちの
 `スタイルガイド <https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/styleguide.rst>`_
-は PSR-1を満たしています。その上で独自の要件を追加しました。
+は PSR-1を適用しその上で独自の要件を追加しました。
 
 **PSR-2: コーディングスタイルガイド**
 
-This PSR was fairly controversial when it first came out. CodeIgniter meets many of the recommendations within,
-but does not, and will not, meet all of them.
+PSRが最初に発表された時、かなり物議を醸していました。. CodeIgniter は多くの推奨事項を満たしていますが、
+しかし全てを満たせたわけではありません。
 
-**PSR-3: Logger Interface**
+**PSR-3: ロガーインターフェイス**
 
-CodeIgniter's :doc:`Logger </general/logging>` implements all of the interfaces provided by this PSR.
+:doc:`ロガー </general/logging>` はこのPSRで提案されているすべてのインターフェイスを実装しています。  
 
-**PSR-4: Autoloading Standard**
+**PSR-4: オートローデング標準**
 
-This PSR provides a method for organizing file and namespaces to allow for a standard method of autoloading
-classes. Our :doc:`Autoloader </concepts/autoloader>` meets the PSR-4 recommendations.
+このPSRはファイルと名前空間を整理し、
+標準のオートロードを可能にする方法を提供しています。:doc:`Autoloader </concepts/autoloader>` は PSR-4 の推奨事項を満たしています。
 
-**PSR-6: Caching Interface**
+**PSR-6: キャッシュインターフェイス**
 
-CodeIgniter will not be trying to meet this PSR, as we believe it oversteps its needs. The newly proposed
-`SimpleCache Interfaces <https://github.com/dragoonis/fig-standards/blob/psr-simplecache/proposed/simplecache.md>`_
-do look like something we would consider.
+CodeIgniter はこのPSRを満たしません。 なぜなら私たちはそれがそのニーズを超えていると考えているからです。新しく提案された、
+`シンプルキャッシュインターフェイス<https://github.com/dragoonis/fig-standards/blob/psr-simplecache/proposed/simplecache.md>`_
+は、私たちが考慮したいもののように見えます。
 
-**PSR-7: HTTP Message Interface**
+**PSR-7: HTTP メッセージインターフェイス**
 
-This PSR standardizes a way of representing the HTTP interactions. While many of the concepts became part of our
-HTTP layer, CodeIgniter does not strive for compatibility with this recommendation.
+このPSRはHTTP対話を表す方法を標準化しています。コンセプトの多くは、私たちの一部となりました。
+しかし、 CodeIgniterはHTMLレイヤーの推奨事項との互換性を追求していません。
 
 ---
 
-If you find any places that we claim to meet a PSR but have failed to execute it correctly, please let us know
-and we will get it fixed, or submit a pull request with the required changes.
+PSRを満たすと私たちは主張していますが、満たせていない箇所、正しく実行できなかった箇所を発見した場合はおしらせください。
+修正するか、必要な変更を加えてプルリクエストします。
