@@ -1,32 +1,32 @@
 ###################
-Server Requirements
+サーバー要件
 ###################
 
-`PHP <https://www.php.net/>`_ version 7.2 or newer is required, with the
-`*intl* extension <https://www.php.net/manual/en/intl.requirements.php>`_ and `*mbstring* extension <https://www.php.net/manual/en/mbstring.requirements.php>`_
-installed.
+`PHP <https://www.php.net/>`_ バージョン 7.2 以降が必要です。
+そして拡張機能 `*intl* extension <https://www.php.net/manual/en/intl.requirements.php>`_ および `*mbstring* extension <https://www.php.net/manual/en/mbstring.requirements.php>`_
+がインストールされていることが必要となります。
 
-The following PHP extensions should be enabled on your server:
+次のPHP の拡張機能を有効にする必要があります。:
 ``php-json``, ``php-mysqlnd``, ``php-xml``
 
-In order to use the :doc:`CURLRequest </libraries/curlrequest>`, you will need
-`libcurl <https://www.php.net/manual/en/curl.requirements.php>`_ installed.
+:doc:`CURLRequest </libraries/curlrequest>` を使用する場合には
+`libcurl <https://www.php.net/manual/en/curl.requirements.php>`_ をインストールする必要があります。
 
-A database is required for most web application programming.
-Currently supported databases are:
+ほとんどのWebアプリケーションプログラミングにはデータベースが必要です。
+現在サポートされているデータベースは次の通りです。:
 
-  - MySQL (5.1+) via the *MySQLi* driver
-  - PostgreSQL via the *Postgre* driver
-  - SQLite3 via the *SQLite3* driver
+  - MySQL (5.1+)  *MySQLi* driver を利用します。
+  - PostgreSQL *Postgre* driverを利用します。
+  - SQLite3  *SQLite3* driver を利用します
 
-Not all of the drivers have been converted/rewritten for CodeIgniter4.
-The list below shows the outstanding ones.
+すべてのドライバーが CodeIgniter4用に変換/書き換え が行われているわけではありません。
+次のリストは、未解決のものです。
 
-  - MySQL (5.1+) via the *pdo* driver
-  - Oracle via the *oci8* and *pdo* drivers
-  - PostgreSQL via the *pdo* driver
-  - MS SQL via the *mssql*, *sqlsrv* (version 2005 and above only) and *pdo* drivers
-  - SQLite via the *sqlite* (version 2) and *pdo* drivers
-  - CUBRID via the *cubrid* and *pdo* drivers
-  - Interbase/Firebird via the *ibase* and *pdo* drivers
-  - ODBC via the *odbc* and *pdo* drivers (you should know that ODBC is actually an abstraction layer)
+  - MySQL (5.1+)   *pdo* driverを使用するもの
+  - Oracle  *oci8* と *pdo* driversを使用するもの
+  - PostgreSQL  *pdo* driverを使用するもの
+  - MS SQL  *mssql*, *sqlsrv* (version 2005とそれ以降のもの) と *pdo* driverを使用するもの
+  - SQLite  *sqlite*  (version 2)と *pdo* driver を使用するもの
+  - CUBRID *cubrid* と *pdo* driverを使用するもの
+  - Interbase/Firebird  *ibase* と *pdo* driverを使用するもの。
+  - ODBC *odbc* と *pdo* drivers を使用するもの(ODBCは実際には抽象化レイヤーであることを知っておいてください。)
