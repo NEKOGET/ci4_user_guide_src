@@ -1,16 +1,16 @@
 ############
-Installation
+インストール
 ############
 
-CodeIgniter4 can be installed in a number of different ways: manually,
-using `Composer <https://getcomposer.org>`_, or using
-`Git <https://git-scm.com/>`_.
-Which is right for you?
+CodeIgniter4 は様々な方法でインストールできます。
+`Composer <https://getcomposer.org>`_ を使うこともできますし、
+`Git <https://git-scm.com/>`_ を使うこともできますね！
+どちらがあなたにぴったりですか?
 
-- If you would like the simple "download & go" install that CodeIgniter3
-  is known for, choose the manual installation.
-- If you plan to add third party packages to your project, or want to keep
-  CodeIgniter up to date easily, we recommend the Composer installation.
+- 簡単に "ダウンロードして実行" をしたい場合はCodeIgniter3と同様に、
+  手動インストールを選択します。
+- サードパーティ製のパッケージをプロジェクトに追加する予定がある場合は
+  CodeIgniter が簡単に最新の状態になるように、composer インストールをお勧めします。
 
 .. toctree::
     :titlesonly:
@@ -22,11 +22,11 @@ Which is right for you?
     troubleshooting
     repositories
 
-However you choose to install and run CodeIgniter4, the
-`user guide <https://codeigniter4.github.io/userguide/>`_ is accessible online.
+CodeIgniter4をインストールして実行する場合、
+`ユーザーガイド <https://codeigniter4.github.io/userguide/>`_  にはオンラインでアクセスすることができます。
 
-.. note:: Before using CodeIgniter 4, make sure that your server meets the
-          :doc:`requirements </intro/requirements>`, in particular the PHP
-          version and the PHP extensions that are needed.
-          You may find that you have to uncomment the ``php.ini`` "extension"
-          lines to enable "curl" and "intl", for instance.
+.. note:: CodeIgniter 4を使用する前にサーバー要件について確認をしてください。
+          特に、:doc:`requirements </intro/requirements>`
+          PHPのバージョンと必要なPHP拡張機能について確認しましょう。
+          ``php.ini``  の "extension" のコメントを解除する必要がある場合があります。
+          例えば "curl" と "intl" を有効にする場合に必要です。
