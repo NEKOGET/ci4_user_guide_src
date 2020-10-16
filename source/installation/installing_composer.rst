@@ -1,87 +1,87 @@
-Composer Installation
+Composer インストール
 ###############################################################################
 
 .. contents::
     :local:
     :depth: 1
 
-Composer can be used in several ways to install CodeIgniter4 on your system.
+CodeIgniter4ではcomposerを使ってインストールすることも可能です。
 
-The first two techniques describe creating a skeleton project
-using CodeIgniter4, that you would then use as the base for a new webapp.
-The third technique described below lets you add CodeIgniter4 to an existing
+最初に、
+CodeIgniter4を使ってスケルトンプロジェクトを作成し、それをWebアプリのベースとして使用する方法を紹介します。
+以下で説明する方法はCodeIgniter4 を既存のWebアプリに追加することができます。
 webapp, 
 
-**Note**: if you are using a Git repository to store your code, or for
-collaboration with others, then the ``vendor`` folder would normally
-be "git ignored". In such a case, you will need to do a ``composer update``
-when you clone the repository to a new system.
+**Note**:  Gitリポジトリを利用してコードを保存している場合、
+また、他のユーザとのコラボレーションのために使用している場合は 通常 ``vendor``フォルダー以下の
+ものは "git から無視" されます。このような場合には、
+``composer update`` を利用する必要があります。 
 
-App Starter
+アプリスターター
 ============================================================
 
-The `CodeIgniter 4 app starter <https://github.com/codeigniter4/appstarter>`_ 
-repository holds a skeleton application, with a composer dependency on
-the latest released version of the framework.
+`CodeIgniter 4 アプリスターター <https://github.com/codeigniter4/appstarter>`_ 
+はスケルトンアプリケーションを保持しつつ、
+composer が最新リリースのバージョンのものを取得します。
 
-This installation technique would suit a developer who wishes to start
-a new CodeIgniter4 based project.
+このインストール方法は、
+新しいCodeIgniter4ベースのプロジェクトを開始したい開発者に最適な方法です。
 
-Installation & Set Up
+インストールとセットアップ
 -------------------------------------------------------
 
-In the folder above your project root::
+プロジェクトルート上のフォルダ :
 
     composer create-project codeigniter4/appstarter project-root
 
-The command above will create a "project-root" folder.
+このコマンドは "project-root"  フォルダーを作成し実行されます。
 
-If you omit the "project-root" argument, the command will create an
-"appstarter" folder, which can be renamed as appropriate.
+"project-root" 引数を省略するとコマンドによって
+"appstarter"  フォルダが作成され、必要に応じて名前を変更することが可能です。
 
-If you don't need or want phpunit installed, and all of its composer
-dependencies, then add the "--no-dev" option to the end of the above
-command line. That will result in only the framework, and the three
-trusted dependencies that we bundle, being composer-installed.
+phpunitとその全てのcomposer依存関係をインストールする必要がない場合、
+またはインストールしたくない場合には上記のコマンドの最後に
+"--no-dev" のオプションを追加します。その結果、フレームワークと、バンドルされている3つの信頼できる依存関係のみが作成されるかたちで
+composer install が実行し終了します。
 
-A sample such installation command, using the default project-root "appstarter"::
+標準の プロジェクトルート "appstarter" が作成されるコマンドサンプル ::
 
     composer create-project codeigniter4/appstarter --no-dev
 
-After installation you should follow the steps in the "Upgrading" section.
+インストール後 "アップグレード" の手順に従う必要があります。
 
-Upgrading
+アップグレード
 -------------------------------------------------------
 
-Whenever there is a new release, then from the command line in your project root::
+新しいリリースがあるときは、プロジェクトルートからコマンドラインを実行します:
 
     composer update 
 
-If you used the "--no-dev" option when you created the project, it
-would be appropriate to do so here too, i.e. ``composer update --no-dev``.
+ "--no-dev" オプションを利用してインストールした場合には
+``composer update --no-dev``  といったように、オプションをつけて実行しましょう。
 
-Read the upgrade instructions, and check designated  ``app/Config`` folders for affected changes.
+アップグレード手順を読み、影響を受ける変更がないか、  ``app/Config`` フォルダーの中身を確認しましょう。
 
-Pros
+長所
 -------------------------------------------------------
 
-Simple installation; easy to update
+とても簡単に、シンプルにアップデートができます。
 
-Cons
+短所
 -------------------------------------------------------
 
-You still need to check for ``app/Config`` changes after updating
+更新後 ``app/Config`` の変更を確認する必要があります。
 
-Structure
+構造
 -------------------------------------------------------
 
-Folders in your project after set up:
+セットアップ後のプロジェクト内のフォルダー:
 
-- app, public, tests, writable 
+- app, public, tests, が書き込み可能かどうか
 - vendor/codeigniter4/framework/system
-- vendor/codeigniter4/framework/app & public (compare with yours after updating)
+- vendor/codeigniter4/framework/app と  public (composer updateを使って更新したあとあなたのファイルと比較して確認してください)
 
-Latest Dev
+最新の開発
 -------------------------------------------------------
 
 The App Starter repo comes with a ``builds`` scripts to switch Composer sources between the
@@ -134,30 +134,30 @@ Copy the ``env``, ``phpunit.xml.dist`` and ``spark`` files, from
 You will have to adjust the system path to refer to the vendor one, e.g. ``ROOTPATH . '/vendor/codeigniter4/framework/system'``,
 - the ``$systemDirectory`` variable in ``app/Config/Paths.php``
 
-Upgrading
+アップグレード
 -------------------------------------------------------
 
-Whenever there is a new release, then from the command line in your project root::
+新しいリリースがあるときは、プロジェクトルートからコマンドラインを実行します:
 
     composer update 
 
 Read the upgrade instructions, and check designated 
 ``app/Config`` folders for affected changes.
 
-Pros
+長所
 -------------------------------------------------------
 
 Relatively simple installation; easy to update
 
-Cons
+短所
 -------------------------------------------------------
 
-You still need to check for ``app/Config`` changes after updating
+更新後 ``app/Config`` の変更を確認する必要があります。
 
-Structure
+構造
 -------------------------------------------------------
 
-Folders in your project after set up:
+セットアップ後のプロジェクト内のフォルダー:
 
 - app, public, tests, writable 
 - vendor/codeigniter4/framework/system
