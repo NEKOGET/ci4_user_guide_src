@@ -84,9 +84,9 @@ composer install が実行し終了します。
 最新の開発
 -------------------------------------------------------
 
-The App Starter repo comes with a ``builds`` scripts to switch Composer sources between the
-current stable release and the latest development branch of the framework. Use this script
-for a developer who is willing to live with the latest unreleased changes, which may be unstable.
+App Starter リポジトリは Composerソースを現在の安定板リリースとフレームワークの最新の開発ブランチで切り替えるための 
+``builds`` スクリプトが付属しています。このスクリプトは
+不安定な可能性のある最新のみリリースの変更を喜んで受け入れる開発者のみが使用してください。
 
 The `development user guide <https://codeigniter4.github.io/CodeIgniter4/>`_ is accessible online.
 Note that this differs from the released user guide, and will pertain to the
