@@ -88,24 +88,24 @@ App Starter リポジトリは Composerソースを現在の安定板リリー�
 ``builds`` スクリプトが付属しています。このスクリプトは
 不安定な可能性のある最新のみリリースの変更を喜んで受け入れる開発者のみが使用してください。
 
-The `development user guide <https://codeigniter4.github.io/CodeIgniter4/>`_ is accessible online.
-Note that this differs from the released user guide, and will pertain to the
-develop branch explicitly.
+この `開発版ユーザーガイド <https://codeigniter4.github.io/CodeIgniter4/>`_  はオンラインでアクセスできます。.
+これはリリースされたユーザーガイドとは異なり、開発ブランチに明示的に関係すること
+を注意してください。.
 
-In your project root::
+プロジェクトルート ::
 
     php builds development
 
-The command above will update **composer.json** to point to the ``develop`` branch of the
-working repository, and update the corresponding paths in config and XML files. To revert
-these changes run::
+上記のコマンドは 作業リポジトリの ``develop`` を指すように  **composer.json** を更新し、
+configフィアルトXMLファイルの対応するパスを更新します。これらの変更を元に戻す場合
+次のコマンドを実行します::
 
     php builds release
 
-After using the ``builds`` command be sure to run ``composer update`` to sync your vendor
-folder with the latest target build.
+``builds`` コマンドを実行した後、必ず ``composer update`` を実行して
+vendor フォルダを最新のターゲットビルドと同期させてください。 
 
-Adding CodeIgniter4 to an Existing Project
+既存のプロジェクトにCodeIgniter4を追加する
 ============================================================
 
 The same `CodeIgniter 4 framework <https://github.com/codeigniter4/framework>`_ 
@@ -115,7 +115,7 @@ existing project using Composer.
 Develop your app inside the ``app`` folder, and the ``public`` folder 
 will be your document root. 
 
-In your project root::
+プロジェクトルート ::
 
     composer require codeigniter4/framework
 
