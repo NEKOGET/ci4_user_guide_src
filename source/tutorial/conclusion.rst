@@ -1,5 +1,5 @@
 最後に
-###############################################################################
+##########
 
 このチュートリアルでは本格的なコンテンツ管理システムで期待されるすべてのことを
 取り上げたわけではありません。
@@ -7,11 +7,12 @@
 CodeIgniterの基本的なデザインパターンの理解を深めるものになったなら
 幸いです。
 
-このチュートリアルを完了したので、
-次は残りのドキュメントを確認しましょう。CodeIgniterはこの包括的なドキュメントがあることについて
-評価されています。"概要" と 
-"一般的なトピック" をぜひよく読んでください。必要に応じて
-クラスとヘルパーのリファレンスを読むと良いでしょう。
+Now that you've completed this tutorial, we recommend you check out the
+rest of the documentation. CodeIgniter is often praised because of its
+comprehensive documentation. Use this to your advantage and read the
+:doc:`Overview <../concepts/index>` and :doc:`../general/index`
+sections thoroughly. You should read
+the :doc:`Library <../libraries/index>` and :doc:`../helpers/index` references when needed.
 
 すべての中堅PHPプログラマーは
 数日でCodeIgnietrでの開発のコツを掴むことができます。
@@ -19,4 +20,5 @@ CodeIgniterの基本的なデザインパターンの理解を深めるものに
 CodeIgniter独自のコードについて
 まだ質問がある場合は:
 
-- `フォーラム <http://forum.codeigniter.com/>`_ をチェックしてください。
+-  `フォーラム <http://forum.codeigniter.com/>`_ をチェックしてください。
+-  `Slack <https://join.slack.com/t/codeigniterchat/shared_invite/zt-rl30zw00-obL1Hr1q1ATvkzVkFp8S0Q>`_ をチェックしてください。

@@ -9,14 +9,15 @@ PSRの草案提案に基準しています。それらは次の通りです。
 
 **PSR-1: 基本コーディング標準**
 
-基本的なクラス、メソッドおよびファイルの命名基準を対象としています。私たちの
-`スタイルガイド <https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/styleguide.rst>`_
-は PSR-1を適用しその上で独自の要件を追加しました。
+This recommendation covers basic class, method, and file-naming standards. Our
+`style guide <https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/styleguide.md>`_
+meets PSR-1 and adds its own requirements on top of it.
 
-**PSR-2: コーディングスタイルガイド**
+**PSR-12: Extended Coding Style**
 
-PSRが最初に発表された時、かなり物議を醸していました。. CodeIgniter は多くの推奨事項を満たしていますが、
-しかし全てを満たせたわけではありません。
+Our
+`style guide <https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/styleguide.md>`_ follows the recommendation plus a set of our own styling conventions.
+
 
 **PSR-3: ロガーインターフェイス**
 
@@ -28,10 +29,12 @@ PSRが最初に発表された時、かなり物議を醸していました。. 
 標準のオートロードを可能にする方法を提供しています。:doc:`Autoloader </concepts/autoloader>` は PSR-4 の推奨事項を満たしています。
 
 **PSR-6: キャッシュインターフェイス**
+**PSR-16: SimpleCache Interface**
 
-CodeIgniter はこのPSRを満たしません。 なぜなら私たちはそれがそのニーズを超えていると考えているからです。新しく提案された、
-`シンプルキャッシュインターフェイス<https://github.com/dragoonis/fig-standards/blob/psr-simplecache/proposed/simplecache.md>`_
-は、私たちが考慮したいもののように見えます。
+While the framework Cache components do not adhere to PSR-6 or PSR-16, a separate set of adapters
+are available from the CodeIgniter4 organization as a supplemental module. It is recommended that
+projects use the native Cache drivers directly as the adapters are only intended for compatibility
+with third-party libraries. For more information visit the `CodeIgniter4 Cache repo <https://github.com/codeigniter4/cache>`_.
 
 **PSR-7: HTTP メッセージインターフェイス**
 
@@ -40,5 +43,4 @@ CodeIgniter はこのPSRを満たしません。 なぜなら私たちはそれ�
 
 ---
 
-PSRを満たすと私たちは主張していますが、満たせていない箇所、正しく実行できなかった箇所を発見した場合はおしらせください。
-修正するか、必要な変更を加えてプルリクエストします。
+PSRを満たすと私たちは主張していますが、満たせていない箇所、正しく実行できなかった箇所を発見した場合はおしらせください。修正するか、必要な変更を加えてプルリクエストします。
