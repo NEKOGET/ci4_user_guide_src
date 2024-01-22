@@ -17,9 +17,9 @@ CodeIgniterはできる限り柔軟になっています。
 つまりCodeIgniterは
 あなたに必要なツールを提供する邪魔にならないフレームなのです。
 
-***********************
-CodeIgniterは、誰のためにありますか？
-***********************
+*****************************
+Is CodeIgniter Right for You?
+*****************************
 
 次の場合、CodeIgniterはあなたに向いています:
 
@@ -37,11 +37,11 @@ CodeIgniterは、誰のためにありますか？
 -  はっきりした、完璧なドキュメントが必要です。
 
 .. toctree::
-	:hidden:
-	:titlesonly:
+    :hidden:
+    :titlesonly:
 
-	self
-	requirements
-	credits
-	psr
-
+    self
+    requirements
+    credits
+    psr
+    License Agreement <../license>

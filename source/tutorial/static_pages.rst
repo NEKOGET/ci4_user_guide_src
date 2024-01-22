@@ -1,78 +1,102 @@
 静的ページ
-###############################################################################
+############
 
-**注:** このチュートリアルは、CodeIgniterをダウンロードし、開発環境に 
-:doc:`フレームワークがインストール済み <../installation/index>`   iであることを
-前提としています。
+.. contents::
+    :local:
+    :depth: 2
 
-まずは静的ページを処理するように  **controller**  
-を設定します。controller は単に役割を委任するだけのクラスです。
-これはあなたのWebアプリケーションの接着剤の役割を果たします。
+.. note:: This tutorial assumes you've downloaded CodeIgniter and
+   :doc:`installed the framework <../installation/index>` in your
+   development environment.
 
-例えば次の呼び出しが行われたとします:
+The first thing you're going to do is set up routing rules to handle static pages.
 
-::
+Setting Routing Rules
+*********************
 
-    http://example.com/news/latest/10
+Routing associates a URI with a controller's method. A controller is simply a
+class that helps delegate work. We will create a controller later.
 
-"news" という名前のコントローラーがあると想像してください。latestというメソッドが
-呼び出されます。ニュースメソッドの仕事は10個のアイテムを取得して
-ページに表示をすることです。MVCでは多くの場合
-一致するURLパターンで表示されます:
+Let's set up routing rules. Open the routes file located at **app/Config/Routes.php**.
 
-::
+The only route directive there to start with should be:
 
-    http://example.com/[controller-class]/[controller-method]/[arguments]
+.. literalinclude:: static_pages/003.php
 
-URLスキームがより複雑になると、これは変更される可能性があります。しかし、今のところ
-私たちがするべきものの全てです。
+This directive says that any incoming request without any content
+specified should be handled by the ``index()`` method inside the ``Home`` controller.
 
-はじめてのコントローラーを作ろう
--------------------------------------------------------
+Add the following lines, **after** the route directive for ``'/'``.
 
- **app/Controllers/Pages.php** 
-にファイルを作成し、次のコードを書いてみましょう。
+.. literalinclude:: static_pages/004.php
+   :lines: 2-
 
-::
+CodeIgniter reads its routing rules from top to bottom and routes the
+request to the first matching rule. Each rule is a regular expression
+(left-side) mapped to a controller and method name
+(right-side). When a request comes in, CodeIgniter looks for the first
+match, and calls the appropriate controller and method, possibly with
+arguments.
 
-    <?php namespace App\Controllers;
+More information about routing can be found in the :doc:`../incoming/routing`.
 
-    use CodeIgniter\Controller;
+Here, the second rule in the ``$routes`` object matches a GET request
+to the URI path **/pages**, and it maps to the ``index()`` method of the ``Pages`` class.
 
-    class Pages extends Controller
-    {
-        public function index()
-        {
-            return view('welcome_message');
-        }
+The third rule in the ``$routes`` object matches a GET request to a URI segment
+using the placeholder ``(:segment)``, and passes the parameter to the
+``view()`` method of the ``Pages`` class.
 
-        public function view($page = 'home')
-        {
-        }
-    }
+Let's Make our First Controller
+*******************************
 
-``view()`` メソッドに 引数 ``$page`` を受け入れたものを作成し、
-``Pages`` という名前のクラスを作成しました。**app/Controllers/Home.php** にあるデェフォルトのコントローラーと同じ 
-``index()`` メソッドもあります。
-このメソッドは、CodeIgniterのウェルカムページを表示します。
+The next thing you're going to do is set up a **controller** to handle
+static pages. A controller is simply a class that helps delegate work.
+It is the glue of your web application.
 
-``Pages`` クラスは
-``CodeIgniter\Controller`` クラスを継承しています。 
-これは、新しい  ``CodeIgniter\Controller`` クラス
-(*system/Controller.php*)  で定義されたメソッドと変数にアクセスできることを意味します。
+Create Pages Controller
+=======================
 
-**controller はWebアプリケーションへの全てのリクエストの中心**
-となります。他のphpで書かれるClassと同様にコントローラー 内では
-``$this`` として参照されます。
+Create a file at **app/Controllers/Pages.php** with the following
+code.
 
-最初のメソッドを作成したので、
-いくつかの基本的なページテンプレートを作成します。ページフッターとヘッダーとして機能する２つの "ビュー" (ページテンプレート) を
-作成します。
+.. important:: You should always be careful about the case of filenames. Many
+    developers develop on case-insensitive file systems on Windows or macOS.
+    However, most server environments use case-sensitive file systems. If the
+    file name case is incorrect, code that works locally will not work on the
+    server.
 
-**app/Views/templates/header.php** を作成し
-次のコードを書いて見ましょう :
+.. literalinclude:: static_pages/001.php
 
-::
+You have created a class named ``Pages``, with a ``view()`` method that accepts
+one argument named ``$page``. It also has an ``index()`` method, the same
+as the default controller found in **app/Controllers/Home.php**; that method
+displays the CodeIgniter welcome page.
+
+.. note:: There are two ``view()`` functions referred to in this tutorial.
+    One is the class method created with ``public function view($page = 'home')``
+    and ``return view('welcome_message')`` for displaying a view.
+    Both are *technically* a function. But when you create a function in a class,
+    it's called a method.
+
+The ``Pages`` class is extending the ``BaseController`` class that extends the
+``CodeIgniter\Controller`` class. This means that the new Pages class can access the
+methods and properties defined in the ``CodeIgniter\Controller`` class
+(**system/Controller.php**).
+
+The **controller is what will become the center of every request** to
+your web application. Like any PHP class, you refer to
+it within your controllers as ``$this``.
+
+Create Views
+============
+
+Now that you've created your first method, it's time to make some basic page
+templates. We will be creating two "views" (page templates) that act as
+our page footer and header.
+
+Create the header at **app/Views/templates/header.php** and add
+the following code::
 
     <!doctype html>
     <html>
@@ -81,109 +105,107 @@ URLスキームがより複雑になると、これは変更される可能性�
     </head>
     <body>
 
-        <h1><?= esc($title); ?></h1>
+        <h1><?= esc($title) ?></h1>
 
-ヘッダーはメインビューを読み込む前に表示する
-基本的なHTMLコードと見出しが含まれています。またコントローラで後で定義する 
-``$title`` 変数も出力をします。
-次に **app/Views/templates/footer.php** を作成し、
-次のコードを書いて見ましょう。:
+The header contains the basic HTML code that you'll want to display
+before loading the main view, together with a heading. It will also
+output the ``$title`` variable, which we'll define later in the controller.
+Now, create a footer at **app/Views/templates/footer.php** that
+includes the following code::
 
-::
-
-        <em>&copy; 2019</em>
+        <em>&copy; 2022</em>
     </body>
     </html>
 
-.. 　注::   **header.php** テンプレートをよく見ると、 **esc()** 
-    を使用しています。これは、COdeIgniterが提供するグローバル関数であり、
-    XSS 攻撃を防ぐものです。これについては、 :doc:`こちら </general/common_functions>` で詳細を確認することができます。
+.. note:: If you look closely in **header.php** template we are using an :php:func:`esc()`
+    function. It's a global function provided by CodeIgniter to help prevent
+    XSS attacks. You can read more about it in :doc:`../general/common_functions`.
 
-.. 警告:: このチュートリアルでは2つの **view()** 関数を参照しています。
-    １つは ``public function view($page = 'home')`` で作成されたクラスメソッドです。
-    そして ``echo view('welcome_message');``  で、ビューを表示しています。
-    どちらも *技術的* 機能です。しかし、クラス関数で作成すると
-    メソッドと呼ばれます。
+Adding Logic to the Controller
+******************************
 
-コントローラにロジックを追加する
--------------------------------------------------------
+Create home.php and about.php
+=============================
 
-ここまでに``view()`` メソッドを作成しました。このメソッドは
-ロードされるページの名前であるパラメータを受け入れています。静的な
-ページ本体は  **app/Views/pages/**
-ディレクトリにあります。
+Earlier you set up a controller with a ``view()`` method. The method
+accepts one parameter, which is the name of the page to be loaded.
 
-そのディレクトリに  **home.php** と **about.php** を作成します。
-それらのファイル内でテキスト(必要なものはなんでも）を入力し、保存します。
-特に独創的に書くのでなければ、"Hello World!" で良いでしょう。 
+The static page bodies will be located in the **app/Views/pages** directory.
 
-これらのページをロードするには、
-リクエストされたページが存在するかどうかを確認する必要があります。これは上で作成した、  ``Pages``  クラスの 
-``view()``  メソッドの本体になります :
+In that directory, create two files named **home.php** and **about.php**.
+Within those files, type some text - anything you'd like - and save them.
+If you like to be particularly un-original, try "Hello World!".
 
-::
+Complete Pages::view() Method
+=============================
 
-    public function view($page = 'home')
-    {
-        if ( ! is_file(APPPATH.'/Views/pages/'.$page.'.php'))
-        {
-            // Whoops, we don't have a page for that!
-            throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
-        }
+In order to load those pages, you'll have to check whether the requested
+page actually exists. This will be the body of the ``view()`` method
+in the ``Pages`` controller created above:
 
-        $data['title'] = ucfirst($page); // Capitalize the first letter
+.. literalinclude:: static_pages/002.php
 
-        echo view('templates/header', $data);
-        echo view('pages/'.$page, $data);
-        echo view('templates/footer', $data);
-    }
+And add ``use CodeIgniter\Exceptions\PageNotFoundException;`` after the ``namespace`` line
+to import the ``PageNotFoundException`` class.
 
-これで、要求されたページが存在する場合、ヘッダーとフッターを含めてロードされ、
-ユーザーに表示されます。リクエストされたページが存在しない場合には、 "404 Page not found"
-エラーが表示されます。
+Now, when the requested page does exist, it is loaded, including the header and
+footer, and returned to the user. If a controller returns a string, it is
+displayed to the user.
 
-このメソッドの最初の行では、ページが実際に存在するかどうかの確認をします。
-PHPのネイティブ関数  ``is_file()``  関数を利用して
-ファイルが予定されていた場所にあるかどうかを確認しています。``PageNotFoundException`` は CodeIgniter
-で用意されている例外で、エラーページを表示させるために用意されています。
+.. note:: Controllers must return a string or a :doc:`Response <../outgoing/response>` object.
 
-Iヘッダーテンプレートでは ``$title`` 変数を利用してページタイトルを
-カスタマイズしました。このタイトル値はこのメソッドで定義されますが、
-値を変数に割り当てる代わりに、``$data`` に
-配列でタイトル要素を割り当てることができます。
+If the requested page doesn't exist, a "404 Page not found" error is shown.
 
-最後に、表示をする順序で
-ビューをロードする必要があります。これを行うには、
-CodeIgniter に組み込まれている、``view()`` 関数を使用します。 ``view()`` 関数の２番目の引数は、
-ビューに値を渡すものです。``$data`` 変数の値である配列の各値は
-そのキーの名前を持つ変数に割り当てられます。したがって、コントローラの
-``$data['title']``  の値はビューの ``$title``  
-と同等です。
+The first line in this method checks whether the page actually exists.
+PHP's native ``is_file()`` function is used to check whether the file
+is where it's expected to be. The ``PageNotFoundException`` is a CodeIgniter
+exception that causes the default error page to show.
 
-.. 注::  **view()** 関数に渡されるファイルとディレクトリの名前は必須です。
-    実際のディレクトリとファイル自体の大文字小文字をを一致させるかはシステムが、
-    そして大文字と小文字を区別するプラットフォームでは、エラーを投げますこれらについては、
-    :doc:` こちら </outgoing/views>` をご確認ください。
+In the header template, the ``$title`` variable was used to customize the
+page title. The value of title is defined in this method, but instead of
+assigning the value to a variable, it is assigned to the title element
+in the ``$data`` array.
 
-アプリの実行
--------------------------------------------------------
+The last thing that has to be done is loading the views in the order
+they should be displayed. The :php:func:`view()` function built-in to
+CodeIgniter will be used to do this. The second parameter in the ``view()``
+function is used to pass values to the view. Each value in the ``$data`` array
+is assigned to a variable with the name of its key. So the value of
+``$data['title']`` in the controller is equivalent to ``$title`` in the
+view.
 
-テストをする準備はできましたか？組み込みサーバを利用する場合、``public``  で提供される ``.htaccess`` 
-の設定を適用できないため、
-URLの一部を "index.php/"  のように
-アプリを実行することができませんCodeIgniterには使用できる独自のコマンドがあります。
+.. note:: Any files and directory names passed into the :php:func:`view()` function MUST
+    match the case of the actual directory and file itself or the system will
+    throw errors on case-sensitive platforms. You can read more about it in
+    :doc:`../outgoing/views`.
 
-コマンドラインから、プロジェクトのルートで実行できます:
+Running the App
+***************
 
-::
+Ready to test? You cannot run the app using PHP's built-in server,
+since it will not properly process the **.htaccess** rules that are provided in
+**public**, and which eliminate the need to specify "**index.php/**"
+as part of a URL. CodeIgniter has its own command that you can use though.
+
+From the command line, at the root of your project:
+
+.. code-block:: console
 
     php spark serve
 
-これは、 port 8080 でアクセス可能なWebサーバを提供します。ブラウザで ``localhost:8080`` にアクセスすると、
-CodeIgniterのウェルカムページが表示されます。
+will start a web server, accessible on port 8080. If you set the location field
+in your browser to **localhost:8080**, you should see the CodeIgniter welcome page.
 
-ブラウザ上でいくつかURLを試して、上記で作成した ``Pages`` 
-コントローラーが何を表示するか確認してみましょう。
+Now visit **localhost:8080/home**. Did it get routed correctly to the ``view()``
+method in the ``Pages`` controller? Awesome!
+
+You should see something like the following:
+
+.. image:: ../images/tutorial1.png
+    :align: center
+
+You can now try several URLs in the browser location field, to see what the ``Pages``
+controller you made above produces...
 
 .. table::
     :widths: 20 80
@@ -191,80 +213,19 @@ CodeIgniterのウェルカムページが表示されます。
     +---------------------------------+-----------------------------------------------------------------+
     | URL                             | Will show                                                       |
     +=================================+=================================================================+
-    | localhost:8080/pages            | the results from the `index` method inside our `Pages`          |
-    |                                 | controller, which is to display the CodeIgniter "welcome" page, |
-    |                                 | because "index" is the default controller method                |
+    | localhost:8080/                 | the CodeIgniter "welcome" page. the results from the ``index()``|
+    |                                 | method in the ``Home`` controller.                              |
     +---------------------------------+-----------------------------------------------------------------+
-    | localhost:8080/pages/index      | the CodeIgniter "welcome" page, because we explicitly asked for |
-    |                                 | the "index" method                                              |
+    | localhost:8080/pages            | the results from the ``index()`` method inside our ``Pages``    |
+    |                                 | controller, which is to display the CodeIgniter "welcome" page. |
     +---------------------------------+-----------------------------------------------------------------+
-    | localhost:8080/pages/view       | the "home" page that you made above, because it is the default  |
-    |                                 | "page" parameter to the ``view()`` method.                      |
+    | localhost:8080/home             | show the "home" page that you made above, because we explicitly |
+    |                                 | asked for it. the results from the ``view()`` method inside our |
+    |                                 | ``Pages`` controller.                                           |
     +---------------------------------+-----------------------------------------------------------------+
-    | localhost:8080/pages/view/home  | show the "home" page that you made above, because we explicitly |
-    |                                 | asked for it                                                    |
+    | localhost:8080/about            | the "about" page that you made above, because we explicitly     |
+    |                                 | asked for it.                                                   |
     +---------------------------------+-----------------------------------------------------------------+
-    | localhost:8080/pages/view/about | the "about" page that you made above, because we explicitly     |
-    |                                 | asked for it                                                    |
+    | localhost:8080/shop             | a "404 - File Not Found" error page, because there is no        |
+    |                                 | **app/Views/pages/shop.php**.                                   |
     +---------------------------------+-----------------------------------------------------------------+
-    | localhost:8080/pages/view/shop  | a "404 - File Not Found" error page, because there is no        |
-    |                                 | `app/Views/pages/shop.php`                                      |
-    +---------------------------------+-----------------------------------------------------------------+
-
-
-ルーティング
--------------------------------------------------------
-
-コントローラーが機能しています! 
-
-カスタムルーティングルールを使用すると、任意のURIを任意のコントローラーおよびメソッドに割り当てをし、
-通常の規則から解放されます:
-
-::
-
-    http://example.com/[controller-class]/[controller-method]/[arguments]
-
-まずは最初にそれを修正しましょう。まず、 **app/Config/Routes.php** にあるファイルを開き、
-「ルート定義」セクションを、 
-ファイルの中で探します。
-
-最初にコメント化されていない行は次の通りです:
-
-::
-
-    $routes->get('/', 'Home::index');
-
-このディレクティブは、コンテンツが指定されていない着信は 
-``Home`` コントローラの ``index()`` メソッドによって処理されることを示しています。 
-
- '/' のルートディレクティブの **後** に次の行を追加します。
-
-::
-
-    $routes->get('(:any)', 'Pages::view/$1');
-
-CodeIgniterはルーティングルールを上から下に順に読み取り、
-リクエストを最初に一致したルールに割り当てます。各ルールは / で区切られたコントローラー(左側) と
-メソッド名 (右側)にマッピングされた
-正規表現です。リクエストが届くと、CodeIgniterは最初の一致を探して、
-適切なコントローラーとメソッドを、おそらくですが引数を指定して
-呼び出します。
-
-ルーティングの詳細については、
-:doc:`ドキュメント </incoming/routing>` を参照してください。
-
-``$routes``  配列の2番目のルールは　ワイルドカード文字列 ``(:any)`` を利用した   
-**any**  リクエストと一致します。パラメータを 
-``Pages`` クラスの ``view()`` メソッドに渡します。 
-
-次に  ``localhost:8080/home`` へアクセスしてください。Pagesコントローラーの ``view()`` メソッドに
-正しくルーティングされましたか？ やったね！
-
-次のような内容が表示されます。:
-
-.. image:: ../images/tutorial1.png
-    :align: center
-
-.. 注意:: ルーツを手動で指定する場合は無効にすることをお勧めします。
-     ``$routes->setAutoRoute(false);`` に設定することで自動ルーティングを無効にします。
-    これにより、定義したルートのみアクセスできるようになります。

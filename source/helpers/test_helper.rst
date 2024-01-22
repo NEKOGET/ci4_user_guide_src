@@ -5,18 +5,15 @@ Test Helper
 The Test Helper file contains functions that assist in testing your project.
 
 .. contents::
-  :local:
-
-.. raw:: html
-
-  <div class="custom-index container"></div>
+    :local:
+    :depth: 2
 
 Loading this Helper
 ===================
 
-This helper is loaded using the following code::
+This helper is loaded using the following code:
 
-	helper('test');
+.. literalinclude:: test_helper/001.php
 
 Available Functions
 ===================
@@ -25,18 +22,13 @@ The following functions are available:
 
 .. php:function:: fake($model, array $overrides = null)
 
-	:param	Model|object|string	$model: Instance or name of the model to use with Fabricator
-	:param	array|null $overrides: Overriding data to pass to Fabricator::setOverrides()
-	:returns:	A random fake item created and aded ot the database by Fabricator
-	:rtype:	object|array
+    :param    Model|object|string    $model: Instance or name of the model to use with Fabricator
+    :param    array|null $overrides: Overriding data to pass to Fabricator::setOverrides()
+    :returns:    A random fake item created and added to the database by Fabricator
+    :rtype:    object|array
 
-	Uses ``CodeIgniter\Test\Fabricator`` to create a random item and add it to the database.
+    Uses ``CodeIgniter\Test\Fabricator`` to create a random item and add it to the database.
 
-	Usage example::
+    Usage example:
 
-		public function testUserAccess()
-		{
-			$user = fake('App\Models\UserModel');
-			
-			$this->assertTrue($this->userHasAccess($user));
-		}
+    .. literalinclude:: test_helper/002.php

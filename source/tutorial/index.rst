@@ -2,31 +2,35 @@
 はじめてのアプリケーションを作ろう
 ############################
 
-概要
+.. contents::
+    :local:
+    :depth: 2
+
+Overview
 ********
 
-このチュートリアルでは、CodeIgniter4 フレームワークを紹介します。
-MVC アーキテクチャの基本原則を説明します。基本的なCodeIgniterアプリケーションは段階的にされているように
-見えるでしょう。
+This tutorial is intended to introduce you to the CodeIgniter4 framework
+and the basic principles of MVC architecture. It will show you how a
+basic CodeIgniter application is constructed in a step-by-step fashion.
 
-もしPHPに慣れていない場合は、
-`W3Schools PHP Tutorial <https://www.w3schools.com/php/default.asp>`_ を先に挑戦して見ましょう。
+If you are not familiar with PHP, we recommend that you check out
+the `W3Schools PHP Tutorial <https://www.w3schools.com/php/default.asp>`_ before continuing.
 
-このチュートリアルでは **基本的なニュースアプリ** を作って見ましょう。まず、
-静的ページを表示するコードを書いて見ましょう。次に、
-データベースからニュース項目を読み取る部分を作ります。
-最後に、フォームからデータベースにニュースを作成する部分を作ります。
+In this tutorial, you will be creating a **basic news application**. You
+will begin by writing the code that can load static pages. Next, you
+will create a news section that reads news items from a database.
+Finally, you'll add a form to create news items in the database.
 
-このチュートリアルは主に次のことを目的としています。
+This tutorial will primarily focus on:
 
 -  Model-View-Controller の基本
 -  Routing の基本
 -  Form validation フォームバリデーション
--  CodeIgniterの "Query Builder"を利用した基本的なクエリの実行
+-  Performing basic database queries using CodeIgniter's Model
 
-このチュートリアルは複数のページに分かれていて、
-それぞれのページでCodeIgniterフレームワークの機能の一部を説明しています。では、
-次のページに進みます:
+The entire tutorial is split up over several pages, each explaining a
+small part of the functionality of the CodeIgniter framework. You'll go
+through the following pages:
 
 -  はじめに、このページでは何をするべきかの概要を説明します。
    まず、デェフォルトのアプリケーションを取得します。
@@ -39,59 +43,69 @@ MVC アーキテクチャの基本原則を説明します。基本的なCodeIgn
 -  :doc:`結果 <conclusion>`、
    さらに他のリソースを読む場合の指針を与えるものとなるでしょう。、
 
-CodeIgniterフレームワークの追究をお楽しみください。
+Enjoy your exploration of the CodeIgniter framework.
 
 .. toctree::
-	:hidden:
-	:titlesonly:
+    :hidden:
+    :titlesonly:
 
-	static_pages
-	news_section
-	create_news_items
-	conclusion
+    static_pages
+    news_section
+    create_news_items
+    conclusion
 
-起動と実行
+Getting Up and Running
 **********************
 
-サイトから手動でリリースされたものをダウンロードできますが、
-このチュートリアルでは、推奨する方法として、composerを使ってパッケージインストールする方法ですすめていきます。
-コマンドラインから次のように入力します:
+Installing CodeIgniter
+======================
 
-::
+You can download a release manually from the site, but for this tutorial we will
+use the recommended way and install the AppStarter package through Composer.
+From your command line type the following:
+
+.. code-block:: console
 
     composer create-project codeigniter4/appstarter ci-news
 
-ci-newsフォルダが作られます。
-CodeIgniter はその中の vendor フォルダにインストールされます。
+This creates a new folder, **ci-news**, which contains your application code, with
+CodeIgniter installed in the vendor folder.
 
-デェフォルトでは CodeIgniter は production mode (プロダクションモード)で起動しますこれは設定がめちゃくちゃになった場合に
-サイトをより安全に保つための安全機能です。
-なので、まずはそれを最初に修正します。.  ``env`` ファイルをコピーする、もしくは ``.env`` に名前を変更します。 それを開きます。
+.. _setting-development-mode:
 
-このファイルにはサーバ固有の設定が含まれています。このファイルは、バージョン管理システムにコミットする必要はありません。
-機密情報をコミットする必要はないのです。これらはすべて
-コメントアウトされていますが、入力したい一般的なものが
-含まれています。そのため、 CI_ENVIRONMENT が含まれている行のコメントを外して、 ``production`` を
-``development`` に変更します。::
+Setting Development Mode
+========================
+
+By default, CodeIgniter starts up in production mode. This is a safety feature
+to keep your site a bit more secure in case settings are messed up once it is live.
+So first let's fix that. Copy or rename the **env** file to **.env**. Open it up.
+
+This file contains server-specific settings. This means you never will need to
+commit any sensitive information to your version control system. It includes
+some of the most common ones you want to enter already, though they are all commented
+out. So uncomment the line with ``CI_ENVIRONMENT`` on it, and change ``production`` to
+``development``::
 
     CI_ENVIRONMENT = development
 
-以上で、アプリケーションをブラウザで表示できるようになりました。ApacheやNginxなど
-任意のサーバーを介してサービスを提供することができますが、CodeIgniterには
-PHPの組み込みサーバを利用して開発マシンですばやく起動して実行できる
-コマンドが付属しています。プロジェクトのルールから
-コマンドラインに次のように入力します::
+Running Development Server
+==========================
+
+With that out of the way it's time to view your application in a browser. You can
+serve it through any server of your choice, Apache, nginx, etc, but CodeIgniter
+comes with a simple command that takes advantage of PHP's built-in server to get
+you up and running fast on your development machines. Type the following on the
+command line from the root of your project:
+
+.. code-block:: console
 
     php spark serve
-
 
 ウェルカムページ
 ****************
 
-ブラウザに正しiURLを指定すると、ウェルカム画面が表示されます。
-次のURLにアクセスして、試して見ましょう。:
-
-::
+Now point your browser to the correct URL you will be greeted by a welcome screen.
+ブラウザに正しiURLを指定すると、ウェルカム画面が表示されます。次のURLにアクセスして、試して見ましょう。::
 
     http://localhost:8080
 
@@ -99,34 +113,42 @@ PHPの組み込みサーバを利用して開発マシンですばやく起動�
 
 .. image:: ../images/welcome.png
 
-アプリケーションが正常に機能しました。変更を開始できる状態となりました。
+This means that your application works and you can start making changes to it.
 
-デバッグ
+Debugging
 *********
 
-開発モードになっているので、アプリケーション下部にツールバーが表示されます。
-このツールバーには、開発中に参照できるお役立ちアイテムが含まれています。
-これは本番環境では表示されません。下部にあるタブをクリックすると
-追加情報が表示されます。ツールバー右側にあるXをクリックすると、
-CodeIgniterフレームがついた小さな正方形に最小化されます。これをクリックすると
-ツールバーが再び表示されます。
+Debug Toolbar
+=============
 
-これに加え、CodeIgniterにはプログラムで例外またはその他の
-エラーが発生した時のためにエラーページがいくつか準備されています。``app/Controllers/Home.php`` を開き、
-いくつかの行を変更してエラーを生成します（セミコロンもしくは中括弧を削除すると良いでしょう）次のような画面が
-表示されます。
+Now that you're in development mode, you'll see the CodeIgniter flame on the right bottom of your application. Click it and you'll see the debug toolbar.
+
+This toolbar contains a number of helpful items that you can reference during development.
+This will never show in production environments. Clicking any of the tabs along the bottom
+brings up additional information. Clicking the X on the right of the toolbar minimizes it
+to a small square with the CodeIgniter flame on it. If you click that the toolbar
+will show again.
+
+.. image:: ../images/debugbar.png
+
+Error Pages
+===========
+
+In addition to this, CodeIgniter has some helpful error pages when you hit exceptions or
+other errors in your program. Open up **app/Controllers/Home.php** and change some line
+to generate an error (removing a semi-colon or brace should do the trick!). You will be
+greeted by a screen looking something like this:
 
 .. image:: ../images/error.png
 
-ここで注意するべき点がいくつかあります:
+There are a couple of things to note here:
 
-1. 上部の赤いヘッダーにカーソルを合わせると開く、  ``search``  リンクが表示されます。 
-   Google.com を新しいタブで開き、例外を検索します。.
-2. バックトレースの任意の行の ``引数``  のリンクをクリックするとリストが展開されます。
-   その関数呼び出しに渡された引数です。
+1. Hovering over the red header at the top reveals a **search** link that will open up
+   DuckDuckGo.com in a new tab and searching for the exception.
+2. Clicking the **arguments** link on any line in the Backtrace will expand a list of
+   the arguments that were passed into that function call.
 
-それを見ると、他のすべてがはっきりとしてくるはずです。
+Everything else should be clear when you see it.
 
-
-開始方法と、デバッグする方法がわかったので、
-この小さなニュースアプリの作成を開始しましょう。
+Now that we know how to get started and how to debug a little, let's get started building this
+small news application.
